@@ -16,7 +16,7 @@
             background-color: #ffffff;
             border-color: #ff0005;
         }
-
+        
         .navbar-inverse .navbar-nav>li>a {
             color: #000000;
         }

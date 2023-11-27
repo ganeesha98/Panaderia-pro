@@ -5,10 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 
-
-
-
-        <title>Cashbook Receipt</title>
+    <title>Cashbook Receipt</title>
 
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -584,11 +581,11 @@
 
  <div class="table-row">
       <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold;">Company</div>
-    <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="company" runat="server" CssClass="input-field" ReadOnly="True" OnTextChanged="company_TextChanged"></asp:TextBox></div>
+    <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="company" runat="server" CssClass="input-field" ReadOnly="True" OnTextChanged="company_TextChanged">1000</asp:TextBox></div>
     <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold;">Date</div>
     <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="date" runat="server" CssClass="input-field" OnTextChanged="Country_TextChanged"></asp:TextBox></div>
        <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold; ">Branch</div>
-    <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="Branch" runat="server" CssClass="input-field" ReadOnly="True" OnTextChanged="Branch_TextChanged"></asp:TextBox></div>
+    <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="Branch" runat="server" CssClass="input-field" ReadOnly="True" OnTextChanged="Branch_TextChanged">0001</asp:TextBox></div>
       <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold; ">Txn Type</div>
     <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="TxnType" runat="server" CssClass="input-field" ReadOnly="True">PAYMENT</asp:TextBox></div>
     <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold; ">Number</div>
@@ -847,7 +844,7 @@
                 //dataBody.innerHTML = ''; // Clear the table content
                 modal.style.display = 'none';
             });
-
+          
             window.addEventListener('click', function (event) {
                 if (event.target == modal) {
                     // Close the modal if the user clicks outside the modal content

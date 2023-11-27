@@ -161,16 +161,7 @@
            }
 
     </style>
-
- 
-
-    <meta charset="UTF-8"/>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-    <title> Set-OFF Payment</title>
-
- 
+    
 
     <!-- Bootstrap CSS -->
 
@@ -272,13 +263,9 @@
 
     <style>
 
-        .form-group row{
+        .form-group row{ 
 
- 
-
-        }
-
- 
+        } 
 
         .form-group {
 
@@ -288,9 +275,7 @@
 
  
 
-        col-sm-2 col-form-label{
-
- 
+        col-sm-2 col-form-label{ 
 
         }
 
@@ -317,14 +302,51 @@
         }
 
     </style>
+    <style>
+        /* Styles for the modal popup */
+        .modal {
+            display:;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+
+        .modal-content-container {
+            max-height: 600px; /* Adjust the maximum height as needed */
+            overflow-y: auto;
+        }
+    </style>
+
+    <style>
+        /* Style for selected row */
+        .selected-row {
+            background-color: yellow;
+        }
+    </style> 
+
+    <meta charset="UTF-8"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title> Set-OFF Payment</title> 
 
 </head>
 
-<body>
-
-    <form id="form1" runat="server">
-
-      
+<body>      
 
         <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -550,54 +572,43 @@
             </div>
         </div>
     </div>
-
  
-
-    </form>
-
- 
-
 <br />
 
 <br />
 
 <br />
+     <form id="form1" runat="server">
 
      <div class="auto-style32">
 
-  <div class="table-row">
-
+ <div class="table-row">
       <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold;">Company</div>
-
-    <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><input name="Company" type="text" id="company" class="input-field" /></div>
-
+    <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="company" runat="server" CssClass="input-field" ReadOnly="True" OnTextChanged="company_TextChanged" >1000</asp:TextBox></div>
     <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold;">Date</div>
-
-    <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><input name="Country" type="text" id="Country" class="input-field" /></div>
-
+    <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="date" runat="server" CssClass="input-field" OnTextChanged="Country_TextChanged"></asp:TextBox></div>
        <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold; ">Branch</div>
-
-    <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><input name="Branch" type="text" id="Branch" class="input-field" /></div>
-
-      <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold; ">Txn Typer</div>
-
-    <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><input name="TxnType" type="text" id="TxnType" class="input-field" /></div>
-
+    <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="Branch" runat="server" CssClass="input-field" ReadOnly="True" OnTextChanged="Branch_TextChanged">0001</asp:TextBox></div>
+      <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold; ">Txn Type</div>
+    <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="TxnType" runat="server" CssClass="input-field" ReadOnly="True">FPAY</asp:TextBox></div>
     <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold; ">Number</div>
-
-    <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><input name="Number" type="text" id="Number" class="input-field" /></div>
-
+    <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="Number" runat="server" CssClass="input-field" ReadOnly="True">0</asp:TextBox></div>
     <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold; ">User</div>
-
-    <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><input name="Code" type="text" id="Code" class="input-field" /></div>
-
- 
+    <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="user" runat="server" CssClass="input-field"></asp:TextBox></div>
 
     </div>
 
 </div>
 
 <br />
+         
+          <div class="row">
+            <div class="col-md-10 alignSuccessMessage">
+                <div id="divMsg" visible="false" runat="server" class="alert alert-success fade-in">
+                    <asp:Label ID="lblShowMessage" runat="server" Visible="false"></asp:Label>
+                </div>
+            </div>
+        </div>
 
     <div class="container mt-5">
 
@@ -613,15 +624,31 @@
 
                     <div class="col-sm-2">
 
-                        <button for="txtsupplierVendor" class="auto-style328" style="background-color: #C0C0C0">...</button>
+                              <!--<button for="btnsup" class="auto-style328" style="background-color: #C0C0C0">...</button>-->
+                        <button type="button" id="btnsource" class="btn btn-secondary" class="auto-style328" style="border-color: #333333; background-color: #80808091">...</button>
 
+                        <div id="myModal" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-content-container" style="overflow: auto">
+                            <!-- Modal header with a close button -->
+                            <div class="modal-header">
+                                <h2>Sub Ledger Master List</h2>
+                                <button id="closeModal">Clear Selection</button>
+                            </div>
+                            <!-- GridView -->
+                            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="True"></asp:GridView>
+
+                            <!-- Placeholder for the GridView -->
+                            <div id="gridViewPlaceholder"></div>
+                        </div>
+                    </div>
+                </div>
                     </div>
 
-                    <div class="col-sm-2">
+                    <asp:Panel runat="server" CssClass="col-sm-2">
+                        <asp:TextBox runat="server" ID="txtvendor" CssClass="auto-style327"></asp:TextBox>
+                    </asp:Panel>
 
-                        <input type="text" id="txtsupplier" class="auto-style327">
-
-                    </div>
 
                     </div>
 
@@ -629,11 +656,12 @@
 
                     <label for="txtsup" class="col-sm-4 col-form-label"></label>
 
-                    <div class="col-sm-8">
+                    <asp:Panel runat="server" CssClass="col-sm-8">
 
-                        <input type="text" id="txtsup" class="form-control">
+                        <asp:TextBox runat="server" ID="txtsup" CssClass="form-control"></asp:TextBox>
 
-                    </div>
+                    </asp:Panel>
+
 
                 </div>
 
@@ -641,21 +669,17 @@
 
                     <label for="txtamount" class="col-sm-4 col-form-label">Amount</label>
 
-                    <div class="col-sm-8">
+                    <asp:Panel runat="server" CssClass="col-sm-8">
 
-                        <input type="text" id="txtamount" class="form-control">
+                        <asp:TextBox runat="server" ID="txtamount" CssClass="form-control">0.00</asp:TextBox>
 
-                    </div>
-
-                </div>
+                    </asp:Panel>
 
                 </div>
 
- 
+                </div> 
 
-            <div class="col-md-6">
-
- 
+            <div class="col-md-6"> 
 
                 <div class="form-group row">
 
@@ -667,11 +691,11 @@
 
                     </div>
 
-                    <div class="col-sm-2">
+                    <asp:Panel runat="server" CssClass="col-sm-2">
 
-                        <input type="text" id="txtPONumber" class="auto-style327">
+                        <asp:TextBox runat="server" ID="txtGLacc" CssClass="auto-style327"></asp:TextBox>
 
-                    </div>                   
+                    </asp:Panel>                   
 
                 </div>
 
@@ -679,11 +703,12 @@
 
                     <label for="txtInvoiceNo" class="col-sm-4 col-form-label">Reference</label>
 
-                    <div class="col-sm-8">
+                    <asp:Panel runat="server" CssClass="col-sm-8">
 
-                        <input type="text" id="txtInvoiceNo" class="form-control">
+                        <asp:TextBox runat="server" ID="txtreferance" CssClass="form-control"></asp:TextBox>
 
-                    </div>
+                    </asp:Panel>
+
 
                 </div>
 
@@ -691,11 +716,12 @@
 
                     <label for="txtInvoiceAmount" class="col-sm-4 col-form-label">Reason</label>
 
-                    <div class="col-sm-8">
+                    <asp:Panel runat="server" CssClass="col-sm-8">
 
-                        <input type="text" id="txtInvoiceAmount" class="form-control">
+                        <asp:TextBox runat="server" ID="txtreason" CssClass="form-control"></asp:TextBox>
 
-                    </div>
+                    </asp:Panel>
+
 
                 </div>
 
@@ -703,11 +729,11 @@
 
                     <label for="txtInvoiceDate" class="col-sm-4 col-form-label">Detail</label>
 
-                    <div class="col-sm-8">
+                    <asp:Panel runat="server" CssClass="col-sm-8">
 
-                        <input type="text" id="txtInvoiceDate" class="form-control">
+                        <asp:TextBox runat="server" ID="txtdetail" CssClass="form-control"></asp:TextBox>
 
-                    </div>
+                    </asp:Panel>
 
                 </div>
 
@@ -788,27 +814,21 @@
     <div class="row">
 
             <div class="col-md-6">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-primary" style="border-style: inset; width: 100px" OnClick="btnSave_Click" />
 
-                <button type="button" id="btnSave" class="btn btn-primary" style="border-style: inset; width: 78px">Save</button>
+    &nbsp;&nbsp;
 
-                &nbsp;&nbsp;
+    <asp:Button ID="btnprint" runat="server" Text="Print" CssClass="btn btn-secondary" style="border-style: inset; width: 100px" OnClick="btnprint_Click" />
 
-                <button type="button" id="btnBrowse" class="btn btn-secondary" style="border-style: inset; width: 78px">Print</button>
+    &nbsp;&nbsp;
 
-                &nbsp;&nbsp;
+    <asp:Button ID="btnExit" runat="server" Text="Exit" CssClass="btn btn-danger" style="border-style: inset; width: 100px" OnClick="btnExit_Click" />
+</div>
 
-                <button type="button" id="btnExit" class="btn btn-danger" style="border-style: inset; width: 78px">Exit</button>                     
-
-                    </div>
 
              </div>
-
-   
-
- 
 
  
 
@@ -818,9 +838,97 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-  
+                 <!--modal 1-->
+        <script>
+            // JavaScript code to display data in the modal
+            var btnsource = document.getElementById('btnsource');
+            var modal = document.getElementById('myModal');
+            var closeModalButton = document.getElementById('closeModal');
+            var dataBody = document.getElementById('<%= GridView1.ClientID %>');
+            var selectedRow = null;
 
-    <div>
+            // Input fields          
+
+            var txtvendorInput = document.getElementById('txtvendor');
+            var txtdaybookInput = document.getElementById('txtGLacc');
+            var txtsupInput = document.getElementById('txtsup');
+            //var txtSONumInput = document.getElementById('txtSONum');
+            //var txtcommentsInput = document.getElementById('txtcomments');
+
+            // Function to handle row selection and highlight
+            function selectRow(row, rowData) {
+                debugger;
+                if (selectedRow) {
+                    selectedRow.classList.remove('selected-row');
+                }
+                row.classList.add('selected-row');
+                selectedRow = row;
+
+                //closeModelButton.click();
+                // Populate the input fields with the selected row's data
+                var cells = row.cells;
+                txtvendorInput.value = cells[0].textContent;
+                txtdaybookInput.value = cells[1].textContent;
+                txtsupInput.value = cells[2].textContent;
+
+                //txtcommentsInput.value = cells[4].textContent;
+
+            }
+
+            btnsource.addEventListener('click', function () {
+                // Display the modal when the button is clicked
+                modal.style.display = 'block';
+
+                // Load data when the modal is opened
+                loadModalData();
+            });
+
+            closeModalButton.addEventListener('click', function () {
+                // Close the modal when the "Close" button is clicked
+                //dataBody.innerHTML = ''; // Clear the table content
+                modal.style.display = 'none';
+            });
+
+            window.addEventListener('click', function (event) {
+                if (event.target == modal) {
+                    // Close the modal if the user clicks outside the modal content
+                    //dataBody.innerHTML = '';
+                    modal.style.display = 'none';
+                }
+            });
+
+            dataBody.addEventListener('click', function (event) {
+                var target = event.target;
+                if (target.tagName === 'TD') {
+                    var row = target.parentElement;
+                    selectRow(row);
+                }
+            });
+
+            function loadModalData() {
+                // Add code here to load data into the modal (e.g., from the GridView)
+                // Make an AJAX request to fetch data and populate the modal
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        // Parse the response and populate the modal
+                        var data = JSON.parse(xmlhttp.responseText);
+                        // Implement code to populate the modal with data
+                    }
+                };
+
+                // Replace 'GetDataUrl' with the URL to fetch data from the server
+                xmlhttp.open('GET', 'GetDataUrl', true);
+                xmlhttp.send();
+            }
+
+            $(document).ready(function () {
+                $("#closeModal").click(function () {
+                    $("#myModal").modal("hide");
+                });
+            });
+
+        </script>
 
         <script>
 
@@ -947,7 +1055,7 @@
         
 
                 <hr class="auto-style330" style="border-style: solid; background-color: #000000";width: 1125px; />
-
+        </form>
                 <footer>
 
                     <p>

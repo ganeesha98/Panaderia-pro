@@ -622,7 +622,7 @@
                     <div class="col-sm-2">
                         <asp:TextBox ID="txtSourceAcc" runat="server" CssClass="auto-style327" OnTextChanged="txtSourceAcc_TextChanged">1031</asp:TextBox>
                     </div>
-
+                                                                                            
                      <div class="col-sm-1">
                             <!--<button for="btnsup" class="auto-style328" style="background-color: #C0C0C0">...</button>-->
                         <button type="button" id="btnsource" class="btn btn-secondary" class="auto-style328" style="border-color: #333333; background-color: #80808091">...</button>

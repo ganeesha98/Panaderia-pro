@@ -512,17 +512,17 @@
         <div class="auto-style32">
             <div class="table-row">
                 <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold;">Company</div>
-                <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="company" runat="server" CssClass="input-field"></asp:TextBox></div>
+                <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="company" runat="server" CssClass="input-field" ReadOnly="True">1000</asp:TextBox></div>
                 <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold;">Date</div>
-                <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="date" runat="server" CssClass="input-field"></asp:TextBox></div>
+                <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="date" runat="server" CssClass="input-field" ReadOnly="True"></asp:TextBox></div>
                 <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold;">Branch</div>
-                <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="Branch" runat="server" CssClass="input-field"></asp:TextBox></div>
-                <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold;">Txn Typer</div>
-                <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="TxnType" runat="server" CssClass="input-field"></asp:TextBox></div>
+                <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="Branch" runat="server" CssClass="input-field" ReadOnly="True">0001</asp:TextBox></div>
+                <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold;">Txn Type</div>
+                <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="TxnType" runat="server" CssClass="input-field" ReadOnly="True">PORD</asp:TextBox></div>
                 <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold;">Number</div>
-                <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="Number" runat="server" CssClass="input-field"></asp:TextBox></div>
+                <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="Number" runat="server" CssClass="input-field" ReadOnly="True"></asp:TextBox></div>
                 <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold;">User</div>
-                <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="user" runat="server" CSSclass="input-field" /></asp:TextBox></div>
+                <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="user" runat="server" CSSclass="input-field" ></asp:TextBox></div>
 
             </div>
         </div>
@@ -610,10 +610,14 @@
                 </div>      
                 <br />
                 <div class="form-group row">
-                    <div id="Panel1" style="background-color: #ffa19926; height: 358px; width: 840px;">
+                    <div id="Panel1" style="background-color: #ffa19926; height: 358px; width: 900px;">
                         <div class="col-sm-4">
-                            <div class="col-sm-4">
-                                 <button type="button" id="btnclick" class="btn btn-secondary"   style="border-color: #333333; background-color: #8689cf4d; width: 62px; font-size: 9px;">Click Here </button>
+                            
+                            </div>
+                        <table class="auto-style44"> 
+                            <tr>
+                                <td class="auto-style333">
+                                    <button type="button" id="btnclick" class="btn btn-secondary"   style="border-color: #333333; background-color: #8689cf4d; width: 62px; font-size: 9px;">...</button>
                                     <div id="myModal2" class="modal">
                                         <div class="modal-content2">
                                             <div class="modal-content-container2" style="overflow: auto">
@@ -623,17 +627,14 @@
                                                     <button id="closeModal2">Clear Selection</button>
                                                 </div>
                                                 <!-- GridView -->
-                                                <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="True"></asp:GridView>
+                                                <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="True"></asp:GridView>
 
                                                 <!-- Placeholder for the GridView -->
                                                 <div id="gridViewPlaceholder2"></div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        <table class="auto-style44"> 
-                            <tr>
+                                </td>
                                 <td class="auto-style333">
                                     <input type="text" id="txtitem_nu" class="auto-style331">
                                 </td>
@@ -808,7 +809,7 @@
             var btnclick = document.getElementById('btnclick');
             var modal2 = document.getElementById('myModal2');
             var closeModalButton2 = document.getElementById('closeModal2');
-            var dataBody = document.getElementById('<%= GridView2.ClientID %>');
+            var dataBody = document.getElementById('<%= GridView3.ClientID %>');
             var selectedRow2 = null;
 
             // Input fields   

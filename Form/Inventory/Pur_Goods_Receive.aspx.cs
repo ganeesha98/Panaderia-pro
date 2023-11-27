@@ -34,10 +34,7 @@ namespace Panaderia.Form.Inventory
             {
                 LoadUserData();
             }
-            {
-                LoadData();
-            }
-
+            
             {
                 LoadSupData();
             }
@@ -108,31 +105,7 @@ namespace Panaderia.Form.Inventory
 
         private void LoadUserData() { }
 
-        private void LoadData()
-        {
-            try
-            {
-                clsCOMMON obj_ = new clsCOMMON();
-
-                obj_.EMPID = "";
-
-                DataTable dt = obj_.GetDashboardData(obj_).Tables[0];
-
-                
-                String companyID = dt.Rows[0][0].ToString();
-                String strbranch = dt.Rows[0][1].ToString();
-                String txn = dt.Rows[0][2].ToString();
-
-                company.Text = companyID;
-                Branch.Text = strbranch;
-                TxnType.Text = txn;
-            }
-            catch (Exception excLSK)
-            {
-
-                throw;
-            }
-        }
+     
 
         protected void btnSave_Click(object sender, EventArgs e)
         {

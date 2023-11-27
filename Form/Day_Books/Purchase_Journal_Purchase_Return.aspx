@@ -589,7 +589,7 @@
        <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold; ">Branch</div>
     <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="Branch" runat="server" CssClass="input-field" ReadOnly="True" OnTextChanged="Branch_TextChanged">0001</asp:TextBox></div>
       <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold; ">Txn Type</div>
-    <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="TxnType" runat="server" CssClass="input-field" ReadOnly="True">PURINVOICE</asp:TextBox></div>
+    <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="TxnType" runat="server" CssClass="input-field" ReadOnly="True">PURRETURN</asp:TextBox></div>
     <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold; ">Number</div>
     <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="Number" runat="server" CssClass="input-field" ReadOnly="True">0</asp:TextBox></div>
     <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold; ">User</div>
@@ -711,25 +711,37 @@
                 </div>
 
                 <div class="form-group row">
+
                     <label for="txtsup" class="col-sm-4 col-form-label"></label>
+
                     <div class="col-sm-8">
+
                         <asp:TextBox ID="txtdaybook" runat="server" CssClass="form-control"></asp:TextBox>
+
                     </div>
 
                 </div>
 
                 <div class="form-group row">
+
                     <label for="txtamount" class="col-sm-4 col-form-label">Amount</label>
+
                     <div class="col-sm-8">
+
                         <asp:TextBox ID="txtamount" runat="server" CssClass="form-control">0.00</asp:TextBox>
+
                     </div>
 
                 </div>               
 
                 <div class="form-group row">
+
                     <label for="txtAdjustment" class="col-sm-4 col-form-label">Adjustment</label>
+
                     <div class="col-sm-8">
+
                         <asp:TextBox ID="txtAdjustment" runat="server" CssClass="form-control">0.00</asp:TextBox>
+
                     </div>
 
                 </div>

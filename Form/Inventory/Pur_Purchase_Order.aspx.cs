@@ -40,9 +40,7 @@ namespace Panaderia.Form.Inventory
             {
                 LoadUserData();
             }
-            {
-                LoadData();
-            }
+            
             {
                 LoadSupData();
             }
@@ -97,8 +95,8 @@ namespace Panaderia.Form.Inventory
                         connection.Open();
                         SqlDataReader reader = cmd.ExecuteReader();
 
-                        GridView2.DataSource = reader;
-                        GridView2.DataBind();
+                        GridView3.DataSource = reader;
+                        GridView3.DataBind();
                     }
                     catch (Exception ex)
                     {
@@ -115,31 +113,7 @@ namespace Panaderia.Form.Inventory
 
         private void LoadUserData() { }
 
-        private void LoadData()
-        {
-            try
-            {
-                clsCOMMON obj_ = new clsCOMMON();
-
-                obj_.EMPID = "";
-
-                DataTable dt = obj_.GetPurchaseData(obj_).Tables[0];
-
-
-                String companyID = dt.Rows[0][0].ToString();
-                String strbranch = dt.Rows[0][1].ToString();
-                String txn = dt.Rows[0][2].ToString();
-
-                company.Text = companyID;
-                Branch.Text = strbranch;
-                TxnType.Text = txn;
-            }
-            catch (Exception excLSK)
-            {
-
-                throw;
-            }
-        }
+       
 
         protected void btnSave_Click(object sender, EventArgs e)
         {

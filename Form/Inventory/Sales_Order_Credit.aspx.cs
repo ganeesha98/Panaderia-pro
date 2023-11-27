@@ -34,9 +34,7 @@ namespace Panaderia.Form.Inventory
             {
                 LoadUserData();
             }
-            {
-                LoadData();
-            }
+           
             {
                 LoadCusData();
             }
@@ -73,35 +71,7 @@ namespace Panaderia.Form.Inventory
         }
         private void LoadUserData() { }
 
-        private void LoadData()
-        {
-            try
-            {
-                clsCOMMON obj_ = new clsCOMMON();
-
-                obj_.EMPID = "";
-
-                DataTable dt = obj_.GetSalesCreditData(obj_).Tables[0];
-
-
-                String companyID = dt.Rows[0][0].ToString();
-                String strbranch = dt.Rows[0][1].ToString();
-                String txn = dt.Rows[0][2].ToString();
-                String num = dt.Rows[0][3].ToString();
-
-                company.Text = companyID;
-                Branch.Text = strbranch;
-                TxnType.Text = txn;
-                Number.Text = num;
-            }
-            catch (Exception excLSK)
-            {
-
-                throw;
-            }
-
-        }
-
+       
         protected void btnSave_Click(object sender, EventArgs e)
         {
             string connectionString = "Data Source=CCPHIT-GUNATLAP\\SQLEXPRESS;Initial Catalog=Panaderia;Integrated Security=True";
