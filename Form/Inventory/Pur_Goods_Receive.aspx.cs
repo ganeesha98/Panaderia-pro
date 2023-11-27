@@ -41,7 +41,39 @@ namespace Panaderia.Form.Inventory
             {
                 LoadGoodsData();
             }
-            
+            {
+                LoadItemData();
+            }
+
+        }
+
+        private void LoadItemData()
+        {
+            string connectionString = "Data Source=CCPHIT-GUNATLAP\\SQLEXPRESS;Initial Catalog=Panaderia;Integrated Security=True";
+            string query = "SELECT item_nu,code,Description,Price,PSize,Pascks,Nos,Dis,Amount,Usize FROM [Panaderia].[dbo].[MF_item]";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        SqlDataReader reader = cmd.ExecuteReader();
+
+                        GridView3.DataSource = reader;
+                        GridView3.DataBind();
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle any exceptions here
+                        string errorMessage = "An error occurred while fetching data. Please try again later.";
+
+                        // Display the error message to the user
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "errorAlert", $"alert('{errorMessage}');", true);
+                    }
+                }
+            }
 
         }
         private void LoadSupData()
