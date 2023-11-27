@@ -704,7 +704,7 @@
         <hr class="auto-style329" style="border-style: solid; color: #999999; background-color: #C0C0C0; width: 100%;" />
         <br />
         <div class="form-group row">
-            <div id="Panel1" style="background-color: #99ccff30; height: 358px; width: 809px;">
+            <div id="Panel1" style="background-color: #99ccff30; height: 358px; width: 1158px;">
                 <table class="auto-style44">
                     <tr>
                          <td class="auto-style35">
