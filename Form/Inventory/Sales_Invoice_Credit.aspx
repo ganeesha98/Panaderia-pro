@@ -688,7 +688,7 @@
                     </div>
                 </div> 
                         </td>
-                         <td class="auto-style333">
+                                <td class="auto-style333">
                                     <input type="text" id="txtitem_nu" class="auto-style331">
                                 </td>
                                 <td class="auto-style333">

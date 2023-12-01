@@ -210,6 +210,7 @@ namespace Panaderia.Form.Inventory
                     con.Open();
                     cmd.ExecuteNonQuery();
                     Response.Write("Saved Successfully");
+                    
                 }
 
             }
@@ -219,8 +220,8 @@ namespace Panaderia.Form.Inventory
         }
 
         protected void btnBrowse_Click(object sender, EventArgs e)
-        {
-
+        {                       
+           
         }
 
         protected void btnExit_Click(object sender, EventArgs e)

@@ -175,7 +175,7 @@
 
         .form-group {
          margin-bottom: 5px;
-          }
+        }
 
         col-sm-2 col-form-label{
 

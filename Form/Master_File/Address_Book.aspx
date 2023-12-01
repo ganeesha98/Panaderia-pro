@@ -169,7 +169,7 @@
 
 </head>
 <body>
-    <form id="form1" runat="server">
+   
         
         <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -402,20 +402,27 @@
 <br />
 
 <br />
-
+    <form id="form1" runat="server">
      <div class="auto-style32">
   <div class="table-row">
-    <div class="table-cell header" style="background-color: #eb1f10; font-weight: bold;">Serial Number</div>
-    <div class="table-cell" style="background-color: #eb1f10"><input name="SerialNumber" type="text" id="SerialNumber" class="input-field" /></div>
-    <div class="table-cell header" style="background-color: #eb1f10; font-weight: bold;">Date</div>
-    <div class="table-cell" style="background-color: #eb1f10"><input name="Country" type="text" id="Country" class="input-field" /></div>
-    <div class="table-cell header" style="background-color: #eb1f10; font-weight: bold; ">User</div>
-    <div class="table-cell" style="background-color: #eb1f10"><input name="Code" type="text" id="Code" class="input-field" /></div>
+    <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold;">Serial Number</div>
+    <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="SerialNumber" runat="server" CssClass="input-field">1000</asp:TextBox></div>
+    <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold;">Date</div>
+    <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="date" runat="server" CssClass="input-field" ForeColor="#000000"></asp:TextBox></div>
+    <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold; ">User</div>
+    <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="user" runat="server" CssClass="input-field"></asp:TextBox></div>
   </div>
 </div>
 
     <br />
 
+     <div class="row">
+            <div class="col-md-10 alignSuccessMessage">
+            <div id="divMsg" visible="false" runat="server" class="alert alert-success fade-in">
+                <asp:Label ID="lblShowMessage" runat="server" Visible="true"></asp:Label>
+            </div>
+                </div>
+        </div>
     <div class="container mt-5">
         <div class="bordere">
         <div class="row">
@@ -423,28 +430,19 @@
                 
 
                 <div class="form-group row">
-    <label for="txtUserGroup" class="col-sm-3 col-form-label">Code</label>
-    <div class="col-sm-3">
-        <input type="text" id="txtCODE" class="form-control"  readonly/>
-    </div>
-    <div class="col-sm-6">
-        <select id="ddlUserGroup" class="form-control" onchange="updateUserGroupText()">
-            <option value="1">Administration Staff</option>
-            <option value="2">Clarical Staff</option>
-            <option value="3">Executive Officers</option>
-            <option value="4">User Level 01</option>
-            <option value="5">System Admin</option>
-            <option value="6">User Group</option>
-        </select>
+    <label for="txtCode" class="col-sm-3 col-form-label">Code</label>
+    <div class="col-sm-5">
+        <asp:TextBox type="text" runat="server" id="txtCode" class="form-control" />
     </div>
 </div>
+    
 
 
 
                 <div class="form-group row">
     <label for="txtShortName" class="col-sm-3 col-form-label">Short Name</label>
     <div class="col-sm-9">
-        <input type="text" id="txtShortName" class="form-control"/>
+        <asp:TextBox type="text" runat="server" id="txtShortName" class="form-control"/>
     </div>
 </div>
 
@@ -452,66 +450,103 @@
                 <div class="form-group row">
     <label for="txtFullName" class="col-sm-3 col-form-label">Full Name</label>
     <div class="col-sm-9">
-        <input type="text" id="txtFulltName" class="form-control"/>
+        <asp:textbox type="text" runat="server" id="txtFullName" class="form-control"/>
     </div>
 </div>
 
 
-                <div class="form-group row">
-    <label for="txtUserName" class="col-sm-3 col-form-label">User Name</label>
+                    <div class="form-group row">
+    <label for="txtAddress1" class="col-sm-3 col-form-label">Address Line 1 </label>
     <div class="col-sm-9">
-        <input type="text" id="txtUserName" class="form-control"/>
+        <asp:textbox type="text" runat="server" id="txtAddress1" class="form-control"/>
     </div>
 </div>
 
-                <div class="form-group row">
-    <label for="txtDefaultStore" class="col-sm-3 col-form-label">Default Store</label>
-    <div class="col-sm-3">
-        <input type="text" id="txtDefaultStore" class="form-control" readonly/>
-    </div>
-    <div class="col-sm-6">
-        <select id="ddlDefaultStore" class="form-control" onchange="updateDefaultStoreText()">
-            <option value="1">Store 1</option>
-            <option value="2">Store 2</option>
-            <option value="3">Store 3</option>
-        </select>
-    </div>
-</div>
 
                 <div class="form-group row">
-    <label for="txtUserGroup" class="col-sm-3 col-form-label">User Group</label>
-    <div class="col-sm-3">
-        <input type="text" id="txtUserGroup" class="form-control"  readonly/>
-    </div>
-    <div class="col-sm-6">
-        <select id="ddlUserGroup" class="form-control" onchange="updateUserGroupText()">
-            <option value="1">Administration Staff</option>
-            <option value="2">Clarical Staff</option>
-            <option value="3">Executive Officers</option>
-            <option value="4">User Level 01</option>
-            <option value="5">System Admin</option>
-            <option value="6">User Group</option>
-        </select>
-    </div>
-</div>
-
-                <div class="form-group row">
-    <label for="txtUserName" class="col-sm-3 col-form-label">User Password</label>
+    <label for="txtAddress2" class="col-sm-3 col-form-label">Address Line 2</label>
     <div class="col-sm-9">
-        <input type="text" id="txtUserPassword" class="form-control"/>
+        <asp:textbox type="text" runat="server" id="txtAddress2" class="form-control"/>
+    </div>
+</div>
+
+
+                <div class="form-group row">
+    <label for="txtcity" class="col-sm-3 col-form-label">City / Region</label>
+    <div class="col-sm-5">
+        <asp:textbox type="text" runat="server" id="txtcity" class="form-control"/>
+    </div>
+</div>
+
+                    <div class="form-group row">
+    <label for="txtCountry" class="col-sm-3 col-form-label">Country</label>
+    <div class="col-sm-5">
+        <asp:textbox type="text" runat="server" id="txtCountry" class="form-control"/>
+    </div>
+</div>
+
+
+        <div class="form-group row">
+    <label for="txtTelephone" class="col-sm-3 col-form-label">Telephone</label>
+    <div class="col-sm-5">
+        <asp:textbox type="text" runat="server" id="txtTelephone" class="form-control"/>
+    </div>
+</div>
+
+                    <div class="form-group row">
+    <label for="txtFax" class="col-sm-3 col-form-label">Fax</label>
+    <div class="col-sm-5">
+        <asp:textbox type="text" runat="server" id="txtFax" class="form-control"/>
     </div>
 </div>
 
                 <div class="form-group row">
-    <label for="txtUserStatus" class="col-sm-3 col-form-label">User Status</label>
-    <div class="col-sm-3">
-        <input type="text" id="txtUserStatus" class="form-control" readonly>
+    <label for="txtMobile" class="col-sm-3 col-form-label">Mobile</label>
+    <div class="col-sm-5">
+        <asp:textbox type="text" runat="server" id="txtMobile" class="form-control"/>
     </div>
+</div>
+
+                <div class="form-group row">
+    <label for="txtEmail" class="col-sm-3 col-form-label">Email</label>
+    <div class="col-sm-9">
+        <asp:textbox type="text" runat="server" id="txtEmail" class="form-control"/>
+    </div>
+</div>
+
+                <div class="form-group row">
+    <label for="txtContact" class="col-sm-3 col-form-label">Contact Person</label>
+    <div class="col-sm-9">
+        <asp:textbox type="text" runat="server" id="txtContact" class="form-control"/>
+    </div>
+</div>
+
+                <div class="form-group row">
+    <label for="txtDetails" class="col-sm-3 col-form-label">Contact Details</label>
+    <div class="col-sm-5">
+        <asp:textbox type="text" runat="server" id="txtDetails" class="form-control"/>
+    </div>
+</div>
+
+                <div class="form-group row">
+    <label for="txtNotes" class="col-sm-3 col-form-label">Notes</label>
+    <div class="col-sm-9">
+    <asp:TextBox runat="server" ID="txtNotes" CssClass="form-control"></asp:TextBox>
+</div>
+
+</div>   
+
+                <div class="form-group row">
+    <label for="txtUserStatus" class="col-sm-3 col-form-label">User Active Status</label>
+   <div class="col-sm-3">
+    <asp:TextBox runat="server" ID="txtUserStatus" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+</div>
+
     <div class="col-sm-6">
-        <select id="ddlUserStatus" class="form-control" onchange="updateUserStatusText()">
-            <option value="A">Active</option>
-            <option value="D">Deleted</option>
-        </select>
+        <asp:DropDownList id="ddlUserStatus" runat="server" class="form-control" onchange="updateUserStatusText()">
+            <asp:ListItem value="A">Active</asp:ListItem>
+            <asp:ListItem value="D">Deleted</asp:ListItem>
+        </asp:DropDownList>
     </div>
 </div>            
             </div>
@@ -524,9 +559,31 @@
             <div class="col-md-6">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:HiddenField ID="hdnDataSaved" runat="server" />
+               <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-primary" style="width: 100px;" OnClientClick="saveOrUpdate()" OnClick="btnSave_Click" />
 
-                <button type="button" id="btnSave" class="btn btn-primary" style="width: 100px;">Save</button>
-                <button type="button" id="btnBrowse" class="btn btn-secondary" style="width: 100px;">Browse</button>
+                <button type="button" id="browseButton" class="btn btn-secondary" style="width: 100px;" onclick="saveOrUpdate()">Browse</button>
+
+                 <div id="myModal" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-content-container" style="overflow: auto">
+                            <!-- Modal header with a close button -->
+                            <div class="modal-header">
+                                <h2>AddressBook List ;)< </h2>
+                                <button id="closeModal">Clear Selection</button>
+                            </div>
+                            <!-- GridView -->
+                            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="True"></asp:GridView>
+
+
+
+
+                            <!-- Placeholder for the GridView -->
+                            <div id="gridViewPlaceholder"></div>
+                        </div>
+                    </div>
+                </div>
+
                 <button type="button" id="btnExit" class="btn btn-danger" style="width: 100px;">Exit</button>
             </div>
         </div>
@@ -534,7 +591,7 @@
 
     <br />
     <hr />
-
+        </form>
     <footer>
                     <p>
                         &copy; <%: DateTime.Now.Year %> - Panaderia Inventory
@@ -547,6 +604,121 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        document.getElementById("btnExit").addEventListener("click", function () {
+            window.location.href = "../../Dashboard.aspx";
+        });
+    </script>
+
+        <script>
+            // JavaScript code to display data in the modal
+            var browseButton = document.getElementById('browseButton');
+            var modal = document.getElementById('myModal');
+            var closeModalButton = document.getElementById('closeModal');
+            var dataBody = document.getElementById('<%= GridView1.ClientID %>');
+            var selectedRow = null;
+
+            // Input fields
+            var txtCodeInput = document.getElementById('txtCode');
+            var txtShortNameInput = document.getElementById('txtShortName');
+            var txtFullNameInput = document.getElementById('txtFullName');
+            var txtAddress1Input = document.getElementById('txtAddress1');
+            var txtAddress2Input = document.getElementById('txtAddress2');
+            var txtcityInput = document.getElementById('txtcity');
+            var txtCountryInput = document.getElementById('txtCountry');
+            var txtTelephoneInput = document.getElementById('txtTelephone');
+            var txtFaxInput = document.getElementById('txtFax');
+            var txtMobileInput = document.getElementById('txtMobile');
+            var txtEmailInput = document.getElementById('txtEmail');
+            var txtContactInput = document.getElementById('txtContact');
+            var txtDetailsInput = document.getElementById('txtDetails');
+            var txtNotesInput = document.getElementById('txtNotes');
+            var txtUserStatusInput = document.getElementById('txtUserStatus');
+
+            // Function to handle row selection and highlight
+            function selectRow(row, rowData) {
+                if (selectedRow) {
+                    selectedRow.classList.remove('selected-row');
+                }
+                row.classList.add('selected-row');
+                selectedRow = row;
+
+                //closeModelButton.click();
+                // Populate the input fields with the selected row's data
+                var cells = row.cells;
+                txtCodeInput.value = cells[0].textContent;
+                txtShortNameInput.value = cells[1].textContent;
+                txtFullNameInput.value = cells[2].textContent;
+                txtAddress1Input.value = cells[3].textContent;
+                txtAddress2Input.value = cells[4].textContent;
+                txtcityInput.value = cells[5].textContent;
+                txtCountryInput.value = cells[6].textContent;
+                txtTelephoneInput.value = cells[7].textContent;
+                txtFaxInput.value = cells[8].textContent;
+                txtMobileInput.value = cells[9].textContent;
+                txtEmailInput.value = cells[10].textContent;
+                txtContactInput.value = cells[11].textContent;
+                txtDetailsInput.value = cells[12].textContent;
+                txtNotesInput.value = cells[13].textContent;
+                txtUserStatusInput.value = cells[13].textContent;
+            }
+
+            browseButton.addEventListener('click', function () {
+                // Display the modal when the button is clicked
+                modal.style.display = 'block';
+
+                // Load data when the modal is opened
+                loadModalData();
+            });
+
+            closeModalButton.addEventListener('click', function () {
+                // Close the modal when the "Close" button is clicked
+                //dataBody.innerHTML = ''; // Clear the table content
+                modal.style.display = 'none';
+            });
+
+            window.addEventListener('click', function (event) {
+                if (event.target == modal) {
+                    // Close the modal if the user clicks outside the modal content
+                    //dataBody.innerHTML = '';
+                    modal.style.display = 'none';
+                }
+            });
+
+            dataBody.addEventListener('click', function (event) {
+                var target = event.target;
+                if (target.tagName === 'TD') {
+                    var row = target.parentElement;
+                    selectRow(row);
+                }
+            });
+
+            function loadModalData() {
+                // Add code here to load data into the modal (e.g., from the GridView)
+                // Make an AJAX request to fetch data and populate the modal
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        // Parse the response and populate the modal
+                        var data = JSON.parse(xmlhttp.responseText);
+                        // Implement code to populate the modal with data
+                    }
+                };
+
+                // Replace 'GetDataUrl' with the URL to fetch data from the server
+                xmlhttp.open('GET', 'GetDataUrl', true);
+                xmlhttp.send();
+            }
+
+            $(document).ready(function () {
+                $("#closeModal").click(function () {
+                    $("#myModal").modal("hide");
+                });
+            });
+
+        </script>
+
 
     <script>
         // Function to format a number to have two digits (e.g., 1 => "01")
