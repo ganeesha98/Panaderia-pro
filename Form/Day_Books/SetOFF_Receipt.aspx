@@ -912,8 +912,8 @@
 
             // Input fields          
 
-            var txtvendorInput = document.getElementById('txtvendor');
-            var txtdaybookInput = document.getElementById('txtGLacc');
+            var txtsubledgerInput = document.getElementById('txtsubledger');
+            var txtledgeraccInput = document.getElementById('txtledgeracc');
             var txtsupInput = document.getElementById('txtsup');
             //var txtSONumInput = document.getElementById('txtSONum');
             //var txtcommentsInput = document.getElementById('txtcomments');
@@ -930,8 +930,8 @@
                 //closeModelButton.click();
                 // Populate the input fields with the selected row's data
                 var cells = row.cells;
-                txtvendorInput.value = cells[0].textContent;
-                txtdaybookInput.value = cells[1].textContent;
+                txtsubledgerInput.value = cells[0].textContent;
+                txtledgeraccInput.value = cells[1].textContent;
                 txtsupInput.value = cells[2].textContent;
 
                 //txtcommentsInput.value = cells[4].textContent;
