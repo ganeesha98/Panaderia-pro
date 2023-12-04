@@ -136,7 +136,33 @@ namespace Panaderia.Form.Master_File
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                string insertQuery = @"INSERT INTO [dbo].[MF_Product_testing1]
+                con.Open();
+
+                // Check if the record with the specified SerialNumber already exists
+                string checkIfExistsQuery = "SELECT COUNT(*) FROM [dbo].[MF_Product_testing1] WHERE [Code] = @Code";
+
+                using (SqlCommand checkCmd = new SqlCommand(checkIfExistsQuery, con))
+                {
+                    checkCmd.Parameters.AddWithValue("@Code", txtCode.Text);
+
+                    int existingRecordCount = (int)checkCmd.ExecuteScalar();
+
+                    if (existingRecordCount > 0)
+                    {
+                        // If the record exists, perform an update
+                        UpdateRecord(con);
+                    }
+                    else
+                    {
+                        // If the record does not exist, perform an insert
+                        InsertRecord(con);
+                    }
+                }
+            }
+        }
+        private void InsertRecord(SqlConnection con)
+        {
+            string insertQuery = @"INSERT INTO [dbo].[MF_Product_testing1]
                 ([SerialNumber],[Date],[User],[Code],[P_Type],[P_Description],[UnitSize],[UnitInCase],[UOM]
                 ,[Category1],[Category2],[Category3],[Category4],[STDCostPrice],[STDSellingPrice],[Tax],[MaximumMarkup]
                 ,[NBT],[VAT],[P_Status])
@@ -144,46 +170,83 @@ namespace Panaderia.Form.Master_File
                 ( @SerialNumber, @Date, @User, @Code,@P_Type, @P_Description, @UnitSize, @UnitInCase, @UOM, @Category1, @Category2,
                 @Category3, @Category4, @STDCostPrice, @STDSellingPrice, @Tax, @MaximumMarkup, @NBT, @VAT, @P_Status)";
 
-                using (SqlCommand cmd = new SqlCommand(insertQuery, con))
-                {
+            using (SqlCommand insertCmd = new SqlCommand(insertQuery, con))
+            {
+                SetParameters(insertCmd);
 
-                    con.Close();
+                insertCmd.ExecuteNonQuery();
 
-                    cmd.Parameters.AddWithValue("@SerialNumber", SerialNumber.Text);
-                    cmd.Parameters.AddWithValue("@Date", date.Text);
-                    cmd.Parameters.AddWithValue("@User", user.Text);
-                    cmd.Parameters.AddWithValue("@Code",txtCode.Text);
-                    cmd.Parameters.AddWithValue("@P_Type", ddltype.SelectedItem.Text.ToString());
-                    cmd.Parameters.AddWithValue("@P_Description", txtdescription.Text);
-                    cmd.Parameters.AddWithValue("@UnitSize", txtUnitSize.Text);
-                    cmd.Parameters.AddWithValue("@UnitInCase", txtUnitInCase.Text);
-                    cmd.Parameters.AddWithValue("@UOM", ddlUOM.SelectedItem.Text.ToString());
-                    cmd.Parameters.AddWithValue("@Category1", ddlcate1.SelectedItem.Text.ToString());
-                    cmd.Parameters.AddWithValue("@Category2", ddlcate2.SelectedItem.Text.ToString());
-                    cmd.Parameters.AddWithValue("@Category3", ddlcate3.SelectedItem.Text.ToString());
-                    cmd.Parameters.AddWithValue("@Category4", ddlcate4.SelectedItem.Text.ToString());
-                    cmd.Parameters.AddWithValue("@STDCostPrice", txtSTDCostPrice.Text);
-                    cmd.Parameters.AddWithValue("@STDSellingPrice", txtSTDSellingPrice.Text);
-                    cmd.Parameters.AddWithValue("@MaximumMarkup", txtMaximumMarkup.Text);
-                    cmd.Parameters.AddWithValue("@NBT", txtNBT.Text);
-                    cmd.Parameters.AddWithValue("@VAT", txtVAT.Text);
-                    cmd.Parameters.AddWithValue("@Tax", ddlTaxCode.SelectedItem.Text.ToString());                   
-                    cmd.Parameters.AddWithValue("@P_Status", ddlactiveStatus.SelectedItem.Text.ToString());
-                   // cmd.Parameters.AddWithValue("@ImagePath", myFile.Text);
+                Response.Write("Saved Successfully");
 
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                    Response.Write("Saved Successfully");
-
-                    divMsg.Visible = true;
-                    lblShowMessage.Visible = true;
-                    lblShowMessage.Text = "Successfully inserted!";
-
-                }
+                divMsg.Visible = true;
+                lblShowMessage.Visible = true;
+                lblShowMessage.Text = "Successfully inserted!";
             }
-           /*// Display a JavaScript alert using ScriptManager
-            string script = "alert('Saved Successfully');";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "SavedSuccessfullyScript", script, true);*/
+        }
+        private void UpdateRecord(SqlConnection con)
+        {
+            string updateQuery = @"
+            UPDATE [dbo].[MF_Product_testing1]
+            SET
+                [Date] = @Date,
+                [User] = @User,
+                [Code] = @Code,
+                [P_Type] = @P_Type,
+                [P_Description] = @P_Description,
+                [UnitSize] = @UnitSize,
+                [UnitInCase] = @UnitInCase,
+                [UOM] = @UOM,
+                [Category1] = @Category1,
+                [Category2] = @Category2,
+                [Category3] = @Category3,
+                [Category4] = @Category4,
+                [STDCostPrice] = @STDCostPrice,
+                [STDSellingPrice] = @STDSellingPrice,
+                [Tax] = @Tax,
+                [MaximumMarkup] = @MaximumMarkup,
+                [NBT] = @NBT,
+                [VAT] = @VAT,
+                [P_Status] = @P_Status
+            WHERE [Code] = @Code";
+
+            using (SqlCommand updateCmd = new SqlCommand(updateQuery, con))
+            {
+                SetParameters(updateCmd);
+
+                updateCmd.ExecuteNonQuery();
+
+                Response.Write("Updated Successfully");
+
+                divMsg.Visible = true;
+                lblShowMessage.Visible = true;
+                lblShowMessage.Text = "Successfully updated!";
+            }
+        }
+
+        private void SetParameters(SqlCommand cmd)
+        {
+            cmd.Parameters.AddWithValue("@SerialNumber", SerialNumber.Text);
+            cmd.Parameters.AddWithValue("@Date", date.Text);
+            cmd.Parameters.AddWithValue("@User", user.Text);
+            cmd.Parameters.AddWithValue("@Code", txtCode.Text);
+            cmd.Parameters.AddWithValue("@P_Type", ddltype.SelectedItem.Text.ToString());
+            cmd.Parameters.AddWithValue("@P_Description", txtdescription.Text);
+            cmd.Parameters.AddWithValue("@UnitSize", txtUnitSize.Text);
+            cmd.Parameters.AddWithValue("@UnitInCase", txtUnitInCase.Text);
+            cmd.Parameters.AddWithValue("@UOM", ddlUOM.SelectedItem.Text.ToString());
+            cmd.Parameters.AddWithValue("@Category1", ddlcate1.SelectedItem.Text.ToString());
+            cmd.Parameters.AddWithValue("@Category2", ddlcate2.SelectedItem.Text.ToString());
+            cmd.Parameters.AddWithValue("@Category3", ddlcate3.SelectedItem.Text.ToString());
+            cmd.Parameters.AddWithValue("@Category4", ddlcate4.SelectedItem.Text.ToString());
+            cmd.Parameters.AddWithValue("@STDCostPrice", txtSTDCostPrice.Text);
+            cmd.Parameters.AddWithValue("@STDSellingPrice", txtSTDSellingPrice.Text);
+            cmd.Parameters.AddWithValue("@MaximumMarkup", txtMaximumMarkup.Text);
+            cmd.Parameters.AddWithValue("@NBT", txtNBT.Text);
+            cmd.Parameters.AddWithValue("@VAT", txtVAT.Text);
+            cmd.Parameters.AddWithValue("@Tax", ddlTaxCode.SelectedItem.Text.ToString());
+            cmd.Parameters.AddWithValue("@P_Status", ddlactiveStatus.SelectedItem.Text.ToString());
+            // cmd.Parameters.AddWithValue("@ImagePath", myFile.Text);   
+
 
         }
 
@@ -211,3 +274,7 @@ namespace Panaderia.Form.Master_File
         }
     }
 }
+
+
+
+

@@ -137,12 +137,12 @@
 
         .auto-style401 {
             height: 358px;
-            width: 850px;
+            width: 1073px;
         }
 
         .auto-style402 {
             height: 358px;
-            width: 899px;
+            width: 1174px;
         }
 
         .auto-style403 {
@@ -429,19 +429,20 @@
      <form id="form1" runat="server">
     <div class="auto-style32">
         <div class="table-row">
-            <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold;">Company</div>
-            <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><input name="Company" type="text" id="company" class="input-field" /></div>
-            <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold;">Date</div>
-            <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><input name="Country" type="text" id="Country" class="input-field" /></div>
-            <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold; ">Branch</div>
-            <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><input name="Branch" type="text" id="Branch" class="input-field" /></div>
-            <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold; ">Txn Typer</div>
-            <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><input name="TxnType" type="text" id="TxnType" class="input-field" /></div>
-            <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold; ">Number</div>
-            <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><input name="Number" type="text" id="Number" class="input-field" /></div>
-            <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold; ">User</div>
-            <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><input name="Code" type="text" id="Code" class="input-field" /></div>
-        </div>
+                <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold;">Company</div>
+                <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="company" runat="server" CssClass="input-field" ReadOnly="True">1000</asp:TextBox></div>
+                <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold;">Date</div>
+                <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="date" runat="server" CssClass="input-field" ReadOnly="True"></asp:TextBox></div>
+                <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold;">Branch</div>
+                <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="Branch" runat="server" CssClass="input-field" ReadOnly="True">0001</asp:TextBox></div>
+                <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold;">Txn Type</div>
+                <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="TxnType" runat="server" CssClass="input-field" ReadOnly="True">SICR</asp:TextBox></div>
+                <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold;">Number</div>
+                <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="Number" runat="server" CssClass="input-field" ReadOnly="True"></asp:TextBox></div>
+                <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold;">User</div>
+                <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="user" runat="server" CSSclass="input-field" ></asp:TextBox></div>
+
+            </div>
     </div>
     <br />
     <div class="container mt-5">
@@ -619,8 +620,8 @@
              var selectedRow3 = null;
 
              // Input fields   
-             var txtitem_nuInput = document.getElementById('txtitem_nu');
-             var TextBox2Input = document.getElementById('TextBox2');
+            // var txtitem_nuInput = document.getElementById('txtitem_nu');
+            /* var TextBox2Input = document.getElementById('TextBox2');
              var txtcodeInput = document.getElementById('txtcode');
              var txtDescriptionInput = document.getElementById('txtDescription');
              var txtPriceInput = document.getElementById('txtPrice');
@@ -628,7 +629,7 @@
              var txtPascksInput = document.getElementById('txtPascks');
              var txtNosInput = document.getElementById('txtNos');
              var txtDisInput = document.getElementById('txtDis');
-             var txtAmountInput = document.getElementById('txtAmount');
+             var txtAmountInput = document.getElementById('txtAmount');*/
 
              // Function to handle row selection and highlight
              function selectRow3(row, rowData) {

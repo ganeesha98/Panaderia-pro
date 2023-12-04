@@ -130,12 +130,7 @@
         .navbar-inverse .navbar-toggle .icon-bar {
             background-color: #101010;
         }
-    .auto-style322 {
-        left: 0px;
-        top: 15px;
-        width: 106px;
-    }
-</style>
+    </style>
 
     <style>
 
@@ -165,6 +160,44 @@
         }
 
     </style>
+    <style>
+        /* Styles for the modal popup */
+        .modal {
+            display:;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+
+        .modal-content-container {
+            max-height: 600px; /* Adjust the maximum height as needed */
+            overflow-y: auto;
+        }
+    </style>
+
+    <style>
+        /* Style for selected row */
+        .selected-row {
+            background-color: yellow;
+        }
+        .auto-style329 {
+            height: 13px;
+        }
+    </style> 
 
 
 </head>
@@ -404,14 +437,16 @@
 <br />
     <form id="form1" runat="server">
      <div class="auto-style32">
+  <div class="auto-style32">
   <div class="table-row">
     <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold;">Serial Number</div>
-    <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="SerialNumber" runat="server" CssClass="input-field">1000</asp:TextBox></div>
+    <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="SerialNumber" runat="server" CssClass="input-field"></asp:TextBox></div>
     <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold;">Date</div>
-    <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="date" runat="server" CssClass="input-field" ForeColor="#000000"></asp:TextBox></div>
+    <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="date" runat="server" CssClass="input-field"></asp:TextBox></div>
     <div class="table-cell header" style="background-color: #eb1f10; width: 150px; font-weight: bold; ">User</div>
     <div class="table-cell" style="background-color: #eb1f10; width: 300px;"><asp:TextBox ID="user" runat="server" CssClass="input-field"></asp:TextBox></div>
   </div>
+</div>
 </div>
 
     <br />
@@ -432,7 +467,7 @@
                 <div class="form-group row">
     <label for="txtCode" class="col-sm-3 col-form-label">Code</label>
     <div class="col-sm-5">
-        <asp:TextBox type="text" runat="server" id="txtCode" class="form-control" />
+        <asp:TextBox type="textcode" runat="server" id="txtCode" class="form-control" />
     </div>
 </div>
     
@@ -442,7 +477,7 @@
                 <div class="form-group row">
     <label for="txtShortName" class="col-sm-3 col-form-label">Short Name</label>
     <div class="col-sm-9">
-        <asp:TextBox type="text" runat="server" id="txtShortName" class="form-control"/>
+        <asp:TextBox type="textname" runat="server" id="txtShortName" class="form-control"/>
     </div>
 </div>
 
@@ -450,7 +485,7 @@
                 <div class="form-group row">
     <label for="txtFullName" class="col-sm-3 col-form-label">Full Name</label>
     <div class="col-sm-9">
-        <asp:textbox type="text" runat="server" id="txtFullName" class="form-control"/>
+        <asp:textbox type="textfname" runat="server" id="txtFullName" class="form-control"/>
     </div>
 </div>
 
@@ -458,7 +493,7 @@
                     <div class="form-group row">
     <label for="txtAddress1" class="col-sm-3 col-form-label">Address Line 1 </label>
     <div class="col-sm-9">
-        <asp:textbox type="text" runat="server" id="txtAddress1" class="form-control"/>
+        <asp:textbox type="textadd1" runat="server" id="txtAddress1" class="form-control"/>
     </div>
 </div>
 
@@ -466,7 +501,7 @@
                 <div class="form-group row">
     <label for="txtAddress2" class="col-sm-3 col-form-label">Address Line 2</label>
     <div class="col-sm-9">
-        <asp:textbox type="text" runat="server" id="txtAddress2" class="form-control"/>
+        <asp:textbox type="textadd2" runat="server" id="txtAddress2" class="form-control"/>
     </div>
 </div>
 
@@ -481,7 +516,7 @@
                     <div class="form-group row">
     <label for="txtCountry" class="col-sm-3 col-form-label">Country</label>
     <div class="col-sm-5">
-        <asp:textbox type="text" runat="server" id="txtCountry" class="form-control"/>
+        <asp:textbox type="textcountry" runat="server" id="txtCountry" class="form-control"/>
     </div>
 </div>
 
@@ -489,42 +524,42 @@
         <div class="form-group row">
     <label for="txtTelephone" class="col-sm-3 col-form-label">Telephone</label>
     <div class="col-sm-5">
-        <asp:textbox type="text" runat="server" id="txtTelephone" class="form-control"/>
+        <asp:textbox type="texttele" runat="server" id="txtTelephone" class="form-control"/>
     </div>
 </div>
 
                     <div class="form-group row">
     <label for="txtFax" class="col-sm-3 col-form-label">Fax</label>
     <div class="col-sm-5">
-        <asp:textbox type="text" runat="server" id="txtFax" class="form-control"/>
+        <asp:textbox type="textfax" runat="server" id="txtFax" class="form-control"/>
     </div>
 </div>
 
                 <div class="form-group row">
     <label for="txtMobile" class="col-sm-3 col-form-label">Mobile</label>
     <div class="col-sm-5">
-        <asp:textbox type="text" runat="server" id="txtMobile" class="form-control"/>
+        <asp:textbox type="textmobile" runat="server" id="txtMobile" class="form-control"/>
     </div>
 </div>
 
                 <div class="form-group row">
     <label for="txtEmail" class="col-sm-3 col-form-label">Email</label>
     <div class="col-sm-9">
-        <asp:textbox type="text" runat="server" id="txtEmail" class="form-control"/>
+        <asp:textbox type="textemail" runat="server" id="txtEmail" class="form-control"/>
     </div>
 </div>
 
                 <div class="form-group row">
     <label for="txtContact" class="col-sm-3 col-form-label">Contact Person</label>
     <div class="col-sm-9">
-        <asp:textbox type="text" runat="server" id="txtContact" class="form-control"/>
+        <asp:textbox type="textconperson" runat="server" id="txtContact" class="form-control"/>
     </div>
 </div>
 
                 <div class="form-group row">
     <label for="txtDetails" class="col-sm-3 col-form-label">Contact Details</label>
     <div class="col-sm-5">
-        <asp:textbox type="text" runat="server" id="txtDetails" class="form-control"/>
+        <asp:textbox type="txtDetails" runat="server" id="txtDetails" class="form-control"/>
     </div>
 </div>
 
@@ -569,22 +604,18 @@
                         <div class="modal-content-container" style="overflow: auto">
                             <!-- Modal header with a close button -->
                             <div class="modal-header">
-                                <h2>AddressBook List ;)< </h2>
+                                <h2>AddressBook List </h2>
                                 <button id="closeModal">Clear Selection</button>
                             </div>
                             <!-- GridView -->
                             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="True"></asp:GridView>
-
-
-
 
                             <!-- Placeholder for the GridView -->
                             <div id="gridViewPlaceholder"></div>
                         </div>
                     </div>
                 </div>
-
-                <button type="button" id="btnExit" class="btn btn-danger" style="width: 100px;">Exit</button>
+<asp:Button ID="btnExit" runat="server" Text="Exit" CssClass="btn btn-danger" Style="width: 100px" OnClick="btnExit_Click" />
             </div>
         </div>
     </div>
@@ -625,16 +656,11 @@
             var txtFullNameInput = document.getElementById('txtFullName');
             var txtAddress1Input = document.getElementById('txtAddress1');
             var txtAddress2Input = document.getElementById('txtAddress2');
-            var txtcityInput = document.getElementById('txtcity');
-            var txtCountryInput = document.getElementById('txtCountry');
             var txtTelephoneInput = document.getElementById('txtTelephone');
             var txtFaxInput = document.getElementById('txtFax');
             var txtMobileInput = document.getElementById('txtMobile');
             var txtEmailInput = document.getElementById('txtEmail');
-            var txtContactInput = document.getElementById('txtContact');
-            var txtDetailsInput = document.getElementById('txtDetails');
-            var txtNotesInput = document.getElementById('txtNotes');
-            var txtUserStatusInput = document.getElementById('txtUserStatus');
+            
 
             // Function to handle row selection and highlight
             function selectRow(row, rowData) {
@@ -652,16 +678,10 @@
                 txtFullNameInput.value = cells[2].textContent;
                 txtAddress1Input.value = cells[3].textContent;
                 txtAddress2Input.value = cells[4].textContent;
-                txtcityInput.value = cells[5].textContent;
-                txtCountryInput.value = cells[6].textContent;
-                txtTelephoneInput.value = cells[7].textContent;
-                txtFaxInput.value = cells[8].textContent;
-                txtMobileInput.value = cells[9].textContent;
-                txtEmailInput.value = cells[10].textContent;
-                txtContactInput.value = cells[11].textContent;
-                txtDetailsInput.value = cells[12].textContent;
-                txtNotesInput.value = cells[13].textContent;
-                txtUserStatusInput.value = cells[13].textContent;
+                txtTelephoneInput.value = cells[5].textContent;
+                txtFaxInput.value = cells[6].textContent;
+                txtMobileInput.value = cells[7].textContent;
+                txtEmailInput.value = cells[8].textContent;               
             }
 
             browseButton.addEventListener('click', function () {
@@ -717,41 +737,58 @@
                 });
             });
 
+        </script>           
+
+
+   <script>
+       // Function to get the current date and time in a formatted string
+       function getCurrentDateTime() {
+           var currentDate = new Date();
+           var dateOptions = { year: 'numeric', month: '2-digit', day: '2-digit' };
+           var timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+
+           var formattedDate = currentDate.toLocaleDateString(undefined, dateOptions);
+           var formattedTime = currentDate.toLocaleTimeString(undefined, timeOptions);
+
+           return formattedDate + ' ' + formattedTime;
+       }
+
+       // Set the value of the "Country" input field to the current date and time
+       document.getElementById('Country').value = getCurrentDateTime();
+                </script>
+
+        <script>
+            // Function to format a number to have two digits (e.g., 1 => "01")
+            function formatNumber(number) {
+                return number < 10 ? '0' + number : number;
+            }
+
+            // Function to get the current local date and time with AM/PM
+            function getCurrentDateTime() {
+                const now = new Date();
+                const year = now.getFullYear();
+                const month = formatNumber(now.getMonth() + 1); // Months are 0-based
+                const day = formatNumber(now.getDate());
+                const hours = formatNumber(now.getHours());
+                const ampm = hours >= 12 ? 'PM' : 'AM'; // Determine AM or PM
+                const twelveHour = hours > 12 ? hours - 12 : hours; // Convert to 12-hour format
+                const minutes = formatNumber(now.getMinutes());
+                const seconds = formatNumber(now.getSeconds());
+
+                // Format the date and time as YYYY-MM-DD hh:mm:ss AM/PM
+                return `${year}-${month}-${day} ${twelveHour}:${minutes}:${seconds} ${ampm}`;
+            }
+
+            // Function to set the date input field with the current date and time
+            function setDateTimeField() {
+                const dateTime = getCurrentDateTime();
+                const dateField = document.getElementById('txtDate');
+                dateField.value = dateTime;
+            }
+
+            // Call the function to set the date input field when the page loads
+            window.onload = setDateTimeField;
         </script>
-
-
-    <script>
-        // Function to format a number to have two digits (e.g., 1 => "01")
-        function formatNumber(number) {
-            return number < 10 ? '0' + number : number;
-        }
-
-        // Function to get the current local date and time with AM/PM
-        function getCurrentDateTime() {
-            const now = new Date();
-            const year = now.getFullYear();
-            const month = formatNumber(now.getMonth() + 1); // Months are 0-based
-            const day = formatNumber(now.getDate());
-            const hours = formatNumber(now.getHours());
-            const ampm = hours >= 12 ? 'PM' : 'AM'; // Determine AM or PM
-            const twelveHour = hours > 12 ? hours - 12 : hours; // Convert to 12-hour format
-            const minutes = formatNumber(now.getMinutes());
-            const seconds = formatNumber(now.getSeconds());
-
-            // Format the date and time as YYYY-MM-DD hh:mm:ss AM/PM
-            return `${year}-${month}-${day} ${twelveHour}:${minutes}:${seconds} ${ampm}`;
-        }
-
-        // Function to set the date input field with the current date and time
-        function setDateTimeField() {
-            const dateTime = getCurrentDateTime();
-            const dateField = document.getElementById('txtDate');
-            dateField.value = dateTime;
-        }
-
-        // Call the function to set the date input field when the page loads
-        window.onload = setDateTimeField;
-    </script>
 
     <script>
         function updateUserGroupText() {
@@ -766,11 +803,7 @@
             document.getElementById("txtUserStatus").value = selectedText;
         }
 
-        function updateDefaultStoreText() {
-            var dropdown = document.getElementById("ddlDefaultStore");
-            var selectedText = dropdown.options[dropdown.selectedIndex].text;
-            document.getElementById("txtDefaultStore").value = selectedText;
-        }
+       
     </script>
 
     <script>

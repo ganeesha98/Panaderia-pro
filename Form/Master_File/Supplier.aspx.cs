@@ -55,7 +55,7 @@ namespace Panaderia.Form.Master_File
         private void LoadData()
         {
             string connectionString = "Data Source=CCPHIT-GUNATLAP\\SQLEXPRESS;Initial Catalog=Panaderia;Integrated Security=True";
-            string query = "SELECT Code, SupplierName, AddressLine1,AddressLine2,AddressLine3,Country,Telephone FROM [Panaderia].[dbo].[MF_Supplier_Test]";
+            string query = "SELECT Code, SupplierName, AddressLine1,AddressLine2,AddressLine3,Country,Telephone FROM [Panaderia].[dbo].[MF_Supplier_new1]";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -137,11 +137,37 @@ namespace Panaderia.Form.Master_File
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            
-                string connectionString = "Data Source=CCPHIT-GUNATLAP\\SQLEXPRESS;Initial Catalog=Panaderia;Integrated Security=True";
-                using (SqlConnection con = new SqlConnection(connectionString))
+            string connectionString = "Data Source=CCPHIT-GUNATLAP\\SQLEXPRESS;Initial Catalog=Panaderia;Integrated Security=True";
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+
+                // Check if the record with the specified SerialNumber already exists
+                string checkIfExistsQuery = "SELECT COUNT(*) FROM [dbo].[MF_Supplier_new1] WHERE [Code] = @Code";
+
+                using (SqlCommand checkCmd = new SqlCommand(checkIfExistsQuery, con))
                 {
-                    string insertQuery = @"INSERT INTO [dbo].[MF_Supplier_new1]
+                    checkCmd.Parameters.AddWithValue("@Code", txtcode.Text);
+
+                    int existingRecordCount = (int)checkCmd.ExecuteScalar();
+
+                    if (existingRecordCount > 0)
+                    {
+                        // If the record exists, perform an update
+                        UpdateRecord(con);
+                    }
+                    else
+                    {
+                        // If the record does not exist, perform an insert
+                        InsertRecord(con);
+                    }
+                }
+            }
+        }
+        private void InsertRecord(SqlConnection con)
+        {
+            string insertQuery = @"INSERT INTO [dbo].[MF_Supplier_new1]
                        ([SerialNumber],[Date],[User],[Code],[SupplierName],[AddressLine1],[AddressLine2],[AddressLine3],[Country]
                        ,[Telephone],[Fax],[Mobile],[Email],[ContactPerson1],[ContactDetails1],[ContactPerson2],[ContactDetails2],[ContactPerson3]
                        ,[ContactDetails3],[Notes],[CreditLimit],[CreditPeriod],[LeadTime],[SupplierType],[BankAndBranch],[AccountNo],[NameOnAccount]
@@ -152,61 +178,106 @@ namespace Panaderia.Form.Master_File
                     @Telephone, @Fax, @Mobile, @Email, @ContactPerson1, @ContactDetails1,
                     @ContactPerson2, @ContactDetails2, @ContactPerson3, @ContactDetails3, @Notes, @CreditLimit, @CreditPeriod,@LeadTime,@SupplierType,@BankAndBranch,@AccountNo,@NameOnAccount,@ActiveStatus,@LedgerAccount)";
 
-                    using (SqlCommand cmd = new SqlCommand(insertQuery, con))
-                    {
+            using (SqlCommand insertCmd = new SqlCommand(insertQuery, con))
+            {
+                SetParameters(insertCmd);
 
-                        con.Close();
+                insertCmd.ExecuteNonQuery();
 
-                        cmd.Parameters.AddWithValue("@SerialNumber", SerialNumber.Text);                        
-                        cmd.Parameters.AddWithValue("@Date", date.Text);
-                        cmd.Parameters.AddWithValue("@User", user.Text);
-                        cmd.Parameters.AddWithValue("@Code", txtcode.Text);
-                        cmd.Parameters.AddWithValue("@SupplierName", txtname.Text);
-                        cmd.Parameters.AddWithValue("@AddressLine1", txtadd1.Text);
-                        cmd.Parameters.AddWithValue("@AddressLine2", txtadd2.Text);
-                        cmd.Parameters.AddWithValue("@AddressLine3", txtadd3.Text); 
-                        cmd.Parameters.AddWithValue("@Country", txtcountry.Text);
-                        cmd.Parameters.AddWithValue("@Telephone", txttele.Text);
-                        cmd.Parameters.AddWithValue("@Fax", txtfax.Text);
-                        cmd.Parameters.AddWithValue("@Mobile", txtmobile.Text);
-                        cmd.Parameters.AddWithValue("@Email", txtemail.Text);
-                        cmd.Parameters.AddWithValue("@ContactPerson1", txtcontactp1.Text);
-                        cmd.Parameters.AddWithValue("@ContactDetails1", txtcontactdetail1.Text);
-                        cmd.Parameters.AddWithValue("@ContactPerson2", txtcontactp2.Text);
-                        cmd.Parameters.AddWithValue("@ContactDetails2", txtcontactdetail2.Text);
-                        cmd.Parameters.AddWithValue("@ContactPerson3", txtcontactp3.Text);
-                        cmd.Parameters.AddWithValue("@ContactDetails3", txtcontactdetail3.Text);
-                        cmd.Parameters.AddWithValue("@Notes", txtnote.Text);
-                        cmd.Parameters.AddWithValue("@CreditLimit", txtcreditlimit.Text);
-                        cmd.Parameters.AddWithValue("@CreditPeriod", txtcreditperiod.Text);
-                        cmd.Parameters.AddWithValue("@LeadTime", txtLtime.Text);
-                        cmd.Parameters.AddWithValue("@SupplierType", ddlsupType.SelectedItem.Text.ToString());
-                        cmd.Parameters.AddWithValue("@BankAndBranch", txtbankBranch.Text);
-                        cmd.Parameters.AddWithValue("@AccountNo", txtaccNo.Text);
-                        cmd.Parameters.AddWithValue("@NameOnAccount", txtaccName.Text);
-                        cmd.Parameters.AddWithValue("@ActiveStatus", ddlActiveStatus.SelectedItem.Text.ToString());
-                        cmd.Parameters.AddWithValue("@LedgerAccount", ddlledgeraccount.SelectedItem.Text.ToString());
+                Response.Write("Saved Successfully");
 
+                divMsg.Visible = true;
+                lblShowMessage.Visible = true;
+                lblShowMessage.Text = "Successfully inserted!";
+            }
+        }
+        private void UpdateRecord(SqlConnection con)
+        {            
+            string updateQuery = @"
+            UPDATE [dbo].[MF_Supplier_new1]
+            SET
+                [Date] = @Date,
+                [User] = @User,
+                [Code] = @Code,
+                [SupplierName] = @SupplierName,
+                [AddressLine1] = @AddressLine1,
+                [AddressLine2] = @AddressLine2,
+                [AddressLine3] = @AddressLine3,
+                [Country] = @Country,
+                [Telephone] = @Telephone,
+                [Fax] = @Fax,
+                [Mobile] = @Mobile,
+                [Email] = @Email,
+                [ContactPerson1] = @ContactPerson1,
+                [ContactDetails1] = @ContactDetails1,
+                [ContactPerson2] = @ContactPerson2,
+                [ContactDetails2] = @ContactDetails2,
+                [ContactPerson3] = @ContactPerson3,
+                [ContactDetails3] = @ContactDetails3,
+                [Notes] = @Notes,
+                [CreditLimit] = @CreditLimit,
+                [CreditPeriod] = @CreditPeriod,
+                [LeadTime] = @LeadTime,
+                [SupplierType] = @SupplierType,
+                [BankAndBranch] = @BankAndBranch,
+                [AccountNo] = @AccountNo,
+                [NameOnAccount] = @NameOnAccount,
+                [ActiveStatus] = @ActiveStatus,
+                [LedgerAccount] = @LedgerAccount
+            WHERE [Code] = @Code";
 
-                        con.Open();
-                        cmd.ExecuteNonQuery();
-                        Response.Write("Saved Successfully");
+            using (SqlCommand updateCmd = new SqlCommand(updateQuery, con))
+            {
+                SetParameters(updateCmd);
 
-                    divMsg.Visible = true;
-                    lblShowMessage.Visible = true;
-                    lblShowMessage.Text = "Successfully inserted!";
-                }
-                }
-/*
-            // Display a JavaScript alert using ScriptManager
-            string script = "alert('Saved Successfully');";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "SavedSuccessfullyScript", script, true);*/
+                updateCmd.ExecuteNonQuery();
+
+                Response.Write("Updated Successfully");
+
+                divMsg.Visible = true;
+                lblShowMessage.Visible = true;
+                lblShowMessage.Text = "Successfully updated!";
+            }
+        }
+        private void SetParameters(SqlCommand cmd)
+        {
+            cmd.Parameters.AddWithValue("@SerialNumber", SerialNumber.Text);
+            cmd.Parameters.AddWithValue("@Date", date.Text);
+            cmd.Parameters.AddWithValue("@User", user.Text);
+            cmd.Parameters.AddWithValue("@Code", txtcode.Text);
+            cmd.Parameters.AddWithValue("@SupplierName", txtname.Text);
+            cmd.Parameters.AddWithValue("@AddressLine1", txtadd1.Text);
+            cmd.Parameters.AddWithValue("@AddressLine2", txtadd2.Text);
+            cmd.Parameters.AddWithValue("@AddressLine3", txtadd3.Text);
+            cmd.Parameters.AddWithValue("@Country", txtcountry.Text);
+            cmd.Parameters.AddWithValue("@Telephone", txttele.Text);
+            cmd.Parameters.AddWithValue("@Fax", txtfax.Text);
+            cmd.Parameters.AddWithValue("@Mobile", txtmobile.Text);
+            cmd.Parameters.AddWithValue("@Email", txtemail.Text);
+            cmd.Parameters.AddWithValue("@ContactPerson1", txtcontactp1.Text);
+            cmd.Parameters.AddWithValue("@ContactDetails1", txtcontactdetail1.Text);
+            cmd.Parameters.AddWithValue("@ContactPerson2", txtcontactp2.Text);
+            cmd.Parameters.AddWithValue("@ContactDetails2", txtcontactdetail2.Text);
+            cmd.Parameters.AddWithValue("@ContactPerson3", txtcontactp3.Text);
+            cmd.Parameters.AddWithValue("@ContactDetails3", txtcontactdetail3.Text);
+            cmd.Parameters.AddWithValue("@Notes", txtnote.Text);
+            cmd.Parameters.AddWithValue("@CreditLimit", txtcreditlimit.Text);
+            cmd.Parameters.AddWithValue("@CreditPeriod", txtcreditperiod.Text);
+            cmd.Parameters.AddWithValue("@LeadTime", txtLtime.Text);
+            cmd.Parameters.AddWithValue("@SupplierType", ddlsupType.SelectedItem.Text.ToString());
+            cmd.Parameters.AddWithValue("@BankAndBranch", txtbankBranch.Text);
+            cmd.Parameters.AddWithValue("@AccountNo", txtaccNo.Text);
+            cmd.Parameters.AddWithValue("@NameOnAccount", txtaccName.Text);
+            cmd.Parameters.AddWithValue("@ActiveStatus", ddlActiveStatus.SelectedItem.Text.ToString());
+            cmd.Parameters.AddWithValue("@LedgerAccount", ddlledgeraccount.SelectedItem.Text.ToString());
 
         }
 
+
+
         protected void btnBrowse_Click(object sender, EventArgs e)
         {
-
+            
 
 
         }
@@ -219,3 +290,6 @@ namespace Panaderia.Form.Master_File
         }
     }
 }
+
+
+
