@@ -634,7 +634,7 @@
                         <asp:TextBox ID="txtCusType" runat="server" CssClass="auto-style326" ReadOnly="true"></asp:TextBox>
                     </div>
                     <div class="col-sm-6">
-                        <asp:DropDownList ID="dd1custype" runat="server" onchange="updateUserStatusText()" Width="114px" CssClass="form-control">
+                        <asp:DropDownList ID="dd1custype" runat="server" onchange="updateUsertypeText()" Width="114px" CssClass="form-control">
                              <asp:ListItem Text="Cash" Value="1"></asp:ListItem>
                              <asp:ListItem Text="Credit" Value="2"></asp:ListItem>                             
                          </asp:DropDownList>
@@ -754,16 +754,16 @@
             document.getElementById("txtCusType").value = selectedText;
         }
 
-        function updateUserStatusText() {
+        function updateUsertypeText() {
             var dropdown = document.getElementById("dd1custype");
             var selectedText = dropdown.options[dropdown.selectedIndex].text;
             document.getElementById("txtCusType").value = selectedText;
         }
 
-        function updateDefaultStoreText() {
+        function updateUserStatusText() {
             var dropdown = document.getElementById("ddlActiveStatus");
             var selectedText = dropdown.options[dropdown.selectedIndex].text;
-            document.getElementById("ddlActiveStatus").value = selectedText;
+            document.getElementById("txtUserStatus").value = selectedText;
         }
     </script>
 
