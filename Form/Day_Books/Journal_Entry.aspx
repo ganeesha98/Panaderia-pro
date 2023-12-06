@@ -620,11 +620,11 @@
              var selectedRow3 = null;
 
              // Input fields   
-            // var txtitem_nuInput = document.getElementById('txtitem_nu');
-            /* var TextBox2Input = document.getElementById('TextBox2');
+             var txtitem_nuInput = document.getElementById('txtitem_nu');
+             var TextBox2Input = document.getElementById('TextBox2');
              var txtcodeInput = document.getElementById('txtcode');
              var txtDescriptionInput = document.getElementById('txtDescription');
-             var txtPriceInput = document.getElementById('txtPrice');
+             /*var txtPriceInput = document.getElementById('txtPrice');
              var txtPSizeInput = document.getElementById('txtPSize');
              var txtPascksInput = document.getElementById('txtPascks');
              var txtNosInput = document.getElementById('txtNos');
@@ -787,7 +787,5 @@
         <footer>
             <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &copy; <%: DateTime.Now.Year %> - Panaderia Inventory Management system Powered By Cargills IT </p>
         </footer>
-    </div>
-</body>
-
-</html>
+    </body>
+    </html>

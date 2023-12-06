@@ -29,7 +29,6 @@ namespace Panaderia.Form.Day_Books
             // Load the user data from the database when the page is loaded
             if (!IsPostBack) // Ensure that the code is executed only on the initial page load, not on postbacks
 
-
             {
                 LoadUserData();
             }
@@ -44,7 +43,7 @@ namespace Panaderia.Form.Day_Books
         private void LoadItemData()
         {
             string connectionString = "Data Source=CCPHIT-GUNATLAP\\SQLEXPRESS;Initial Catalog=Panaderia;Integrated Security=True";
-            string query = "SELECT Acc_No,Acc_Code,Acc_Description,Acc_Impact FROM [MyBooks].[dbo].[ACC_Template]";
+            string query = "SELECT Acc_No,Acc_Code,Acc_Impact,Acc_Description FROM [MyBooks].[dbo].[ACC_Template]";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

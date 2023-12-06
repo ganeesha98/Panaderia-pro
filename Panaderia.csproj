@@ -217,6 +217,7 @@
     <Content Include="Form\Day_Books\Service_Journal.aspx" />
     <Content Include="Form\Day_Books\SetOFF_Payment.aspx" />
     <Content Include="Form\Day_Books\SetOFF_Receipt.aspx" />
+    <Content Include="Form\Inventory\additem.aspx" />
     <Content Include="Form\Inventory\Adjustment_Excess.aspx" />
     <Content Include="Form\Inventory\Adjustment_Shortage.aspx" />
     <Content Include="Form\Inventory\Pur_Goods_Receive.aspx" />
@@ -706,6 +707,13 @@
     </Compile>
     <Compile Include="Form\Day_Books\SetOFF_Receipt.aspx.designer.cs">
       <DependentUpon>SetOFF_Receipt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Inventory\additem.aspx.cs">
+      <DependentUpon>additem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form\Inventory\additem.aspx.designer.cs">
+      <DependentUpon>additem.aspx</DependentUpon>
     </Compile>
     <Compile Include="Form\Inventory\Adjustment_Excess.aspx.cs">
       <DependentUpon>Adjustment_Excess.aspx</DependentUpon>
