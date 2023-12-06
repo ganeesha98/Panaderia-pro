@@ -169,11 +169,7 @@
         col-sm-2 col-form-label{
 
         }
-        .auto-style330 {
-            width: 1011px;
-            margin-left: 35px;
-        }
-    </style>
+        </style>
 
 
     <style>
@@ -261,11 +257,48 @@
         .auto-style331 {
             width: 59px;
         }
-        .auto-style332 {
-            width: 39px;
-        }
         .auto-style333 {
             height: 28px;
+        }
+        .auto-style335 {
+            width: 1103px;
+        }
+        .auto-style338 {
+            height: 28px;
+            width: 44px;
+        }
+        .auto-style344 {
+            width: 96px;
+        }
+        .auto-style345 {
+            width: 27px;
+        }
+        .auto-style356 {
+            width: 97px;
+        }
+        .auto-style357 {
+            width: 81px;
+        }
+        .auto-style359 {
+            width: 73px;
+        }
+        .auto-style363 {
+            width: 86px;
+        }
+        .auto-style366 {
+            width: 91px;
+        }
+        .auto-style368 {
+            width: 95px;
+        }
+        .auto-style369 {
+            width: 76px;
+        }
+        .auto-style370 {
+            width: 72px;
+        }
+        .auto-style371 {
+            width: 1100px;
         }
     </style> 
 
@@ -622,12 +655,13 @@
                         <div class="col-sm-4">
                             
                             </div>
-        
-<table id="yourGridViewTable">
-    <tr>
-        <!-- Your input fields here  -->
-         <td class="auto-style333">
-                        <button type="button" id="btnclick" class="btn btn-secondary"   style="border-color: #333333; background-color: #8689cf4d; width: 62px; font-size: 9px;">...</button>
+
+                         <table id="GridView1" class="auto-style335">
+                <thead>
+                <tr>
+
+                    <td class="auto-style338">
+                        <button type="button" id="btnclick" class="btn btn-secondary"   style="border-color: #333333; background-color: #8689cf4d; width: 40px; font-size: 9px;">...</button>
                                     <div id="myModal2" class="modal">
                                         <div class="modal-content2">
                                             <div class="modal-content-container2" style="overflow: auto">
@@ -637,7 +671,7 @@
                                                     <button id="closeModal2">Clear Selection</button>
                                                 </div>
                                                 <!-- GridView -->
-                                                <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="True"></asp:GridView>
+                                                <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="True"></asp:GridView>
 
                                                 <!-- Placeholder for the GridView -->
                                                 <div id="gridViewPlaceholder2"></div>
@@ -647,6 +681,53 @@
         
        
          </td>
+
+                    <th class="auto-style345">Line</th>
+                    <th class="auto-style368"> </th>
+                    <th class="auto-style359">Item code</th>
+                    <th class="auto-style370">Description</th>
+                    <th class="auto-style363">Price</th>
+                    <th class="auto-style369">PSize</th>
+                    <th class="auto-style357">Packs</th>
+                    <th class="auto-style356">Nos</th>
+                    <th class="auto-style366">Discount</th>
+                    <th class="auto-style344">Amount</th>
+                    
+                </tr>
+               </thead>
+               </div>
+            <br />           
+           <tbody>
+           </tbody>
+           </table>
+
+
+
+        
+<table id="yourGridViewTable" class="auto-style371">
+    <tr>
+        <!-- Your input fields here  
+         <td class="auto-style333">
+                        <button type="button" id="btnclick" class="btn btn-secondary"   style="border-color: #333333; background-color: #8689cf4d; width: 62px; font-size: 9px;">...</button>
+                                    <div id="myModal2" class="modal">
+                                        <div class="modal-content2">
+                                            <div class="modal-content-container2" style="overflow: auto">
+                                                <!-- Modal header with a close button 
+                                                <div class="modal-header2">
+                                                    <h2>Item Master List</h2>
+                                                    <button id="closeModal2">Clear Selection</button>
+                                                </div>
+                                                <!-- GridView 
+                                                <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="True"></asp:GridView>
+
+                                                <!-- Placeholder for the GridView 
+                                                <div id="gridViewPlaceholder2"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+        
+       
+         </td>-->
         <td class="auto-style333">
             <asp:TextBox ID="txtitem_nu" runat="server" CssClass="auto-style331" style="width: 100px"></asp:TextBox>
         </td>
@@ -660,7 +741,7 @@
         </td>
 
         <td class="auto-style333">
-            <asp:TextBox ID="txtDescription" runat="server" CssClass="auto-style331" style="width: 100px"></asp:TextBox>
+            <asp:TextBox ID="txtDescription" runat="server" CssClass="auto-style331" style="width: 154px"></asp:TextBox>
         </td>
 
         <td class="auto-style333">
@@ -700,21 +781,23 @@
  </div>    
     
     <div style="visibility: visible; overflow: auto; cursor: auto; display: table-column; clip: rect(auto, auto, auto, auto)">
-            <asp:GridView ID="yourGridView" runat="server" BorderColor="#333333" BorderStyle="Solid" BorderWidth="3px" ForeColor="Black" ShowHeaderWhenEmpty="True" EnablePersistedSelection="True" OnSelectedIndexChanged="yourGridView_SelectedIndexChanged">
+            <asp:GridView ID="yourGridView" runat="server" BorderColor="#333333" BorderStyle="Solid" BorderWidth="3px" ForeColor="Black" ShowHeaderWhenEmpty="True" OnSelectedIndexChanged="yourGridView_SelectedIndexChanged" AutoGenerateDeleteButton="True" >
                 <Columns>
-                    <asp:BoundField HeaderText="item num1" DataField="txtitem_nu1" />
-                    <asp:BoundField HeaderText="item num" DataField="txtitem_nu" />
-                    <asp:BoundField HeaderText="Box2" DataField="TextBox2" />
-                    <asp:BoundField HeaderText="code" DataField="txtcode" />
-                    <asp:BoundField HeaderText="Description" DataField="txtDescription" />
-                    <asp:BoundField HeaderText="Price" DataField="txtPrice" />
-                    <asp:BoundField HeaderText="PSize" DataField="txtPSize" />
-                    <asp:BoundField HeaderText="Pascks" DataField="txtPascks" />
-                    <asp:BoundField HeaderText="Nos" DataField="txtNos" />
-                    <asp:BoundField HeaderText="Discount" DataField="txtDis" />
-                    <asp:BoundField HeaderText="Amount" DataField="txtAmount" />
+                    <asp:BoundField HeaderText="item num1" DataField="txtitem_nu1" Visible="true" />
+                    <asp:BoundField HeaderText="item num" DataField="txtitem_nu" Visible="true" />
+                    <asp:BoundField HeaderText="Box2" DataField="TextBox2" Visible="true" />
+                    <asp:BoundField HeaderText="code" DataField="txtcode" Visible="true"/>
+                    <asp:BoundField HeaderText="Description" DataField="txtDescription" Visible="true" />
+                    <asp:BoundField HeaderText="Price" DataField="txtPrice" Visible="true" />
+                    <asp:BoundField HeaderText="PSize" DataField="txtPSize" Visible="true" />
+                    <asp:BoundField HeaderText="Pascks" DataField="txtPascks" Visible="true" />
+                    <asp:BoundField HeaderText="Nos" DataField="txtNos" Visible="true" />
+                    <asp:BoundField HeaderText="Discount" DataField="txtDis" Visible="true"/>
+                    <asp:BoundField HeaderText="Amount" DataField="txtAmount" Visible="true"/>
 
                 </Columns>
+                <RowStyle BorderStyle="Solid" HorizontalAlign="Center" />
+                <SelectedRowStyle BorderStyle="Dotted" />
             </asp:GridView>
     </div>
 
@@ -825,7 +908,7 @@
         var btnsup = document.getElementById('btnsup');
         var modal = document.getElementById('myModal');
         var closeModalButton = document.getElementById('closeModal');
-        var dataBody = document.getElementById('<%= GridView1.ClientID %>');
+        var dataBody = document.getElementById('<%= GridView2.ClientID %>');
         var selectedRow = null;
 
         // Input fields          
@@ -918,7 +1001,7 @@
             var btnclick = document.getElementById('btnclick');
             var modal2 = document.getElementById('myModal2');
             var closeModalButton2 = document.getElementById('closeModal2');
-            var dataBody = document.getElementById('<%= GridView3.ClientID %>');
+            var dataBody = document.getElementById('<%= GridView1.ClientID %>');
             var selectedRow2 = null;
 
             // Input fields   

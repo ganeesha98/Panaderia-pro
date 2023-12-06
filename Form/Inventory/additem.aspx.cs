@@ -59,8 +59,8 @@ namespace Panaderia.Form.Inventory
                         connection.Open();
                         SqlDataReader reader = cmd.ExecuteReader();
 
-                        GridView3.DataSource = reader;
-                        GridView3.DataBind();
+                        GridView2.DataSource = reader;
+                        GridView2.DataBind();
                     }
                     catch (Exception ex)
                     {
