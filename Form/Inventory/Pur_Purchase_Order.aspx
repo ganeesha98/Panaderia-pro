@@ -639,7 +639,7 @@
                                     <input type="text" id="txtitem_nu" class="auto-style331">
                                 </td>
                                 <td class="auto-style333">
-                                    <input type="text" id="TextBox2" class="auto-style332">
+                                    <input type="text" id="TextBox2" class="-style332">
                                 </td>
                                 <td class="auto-style333">
                                     <input type="text" id="txtcode" style="width: 81px;">

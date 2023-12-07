@@ -303,8 +303,7 @@
     </style> 
 
 </head>
-<body>
-    
+<body> 
        
         <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -328,7 +327,7 @@
                             <li><a href="../Master_File/Address_Book.aspx">Address Book</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li>  
                         <a href="#"
                            class="dropdown-toggle"
                            data-toggle="dropdown">Inventory</a>
@@ -437,6 +436,7 @@
                                     </li>
                                 </ul>
                             </div>
+
                             <li><a href="#">Sales Jounal</a></li>
                             <div id="sub-categories">
                                 <ul>
@@ -620,7 +620,7 @@
                     <div class="col-sm-8">
                         <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
-                </div>
+                </div></
                 <div class="form-group row">
                     <label for="txtreferance" class="col-sm-4 col-form-label">Supplier Referance</label>
                     <div class="col-sm-8">
@@ -706,28 +706,7 @@
         
 <table id="yourGridViewTable" class="auto-style371">
     <tr>
-        <!-- Your input fields here  
-         <td class="auto-style333">
-                        <button type="button" id="btnclick" class="btn btn-secondary"   style="border-color: #333333; background-color: #8689cf4d; width: 62px; font-size: 9px;">...</button>
-                                    <div id="myModal2" class="modal">
-                                        <div class="modal-content2">
-                                            <div class="modal-content-container2" style="overflow: auto">
-                                                <!-- Modal header with a close button 
-                                                <div class="modal-header2">
-                                                    <h2>Item Master List</h2>
-                                                    <button id="closeModal2">Clear Selection</button>
-                                                </div>
-                                                <!-- GridView 
-                                                <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="True"></asp:GridView>
-
-                                                <!-- Placeholder for the GridView 
-                                                <div id="gridViewPlaceholder2"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-        
        
-         </td>-->
         <td class="auto-style333">
             <asp:TextBox ID="txtitem_nu" runat="server" CssClass="auto-style331" style="width: 100px"></asp:TextBox>
         </td>
@@ -745,7 +724,7 @@
         </td>
 
         <td class="auto-style333">
-            <asp:TextBox ID="txtPrice" runat="server" CssClass="auto-style331" style="width: 100px"></asp:TextBox>
+            <asp:TextBox ID="txtPrice" runat="server" CssClass="auto-style331" style="width: 100px" onkeyup="calculateAmount()"></asp:TextBox>
         </td>
 
         <td class="auto-style333">
@@ -757,7 +736,7 @@
         </td>
 
         <td class="auto-style333">
-            <asp:TextBox ID="txtNos" runat="server" CssClass="auto-style331" style="width: 100px"></asp:TextBox>
+            <asp:TextBox ID="txtNos" runat="server" CssClass="auto-style331" style="width: 100px" onkeyup="calculateAmount()"></asp:TextBox>
         </td>
 
         <td class="auto-style333">
@@ -774,7 +753,7 @@
 
 
     </tr>
-
+    n
 </table> 
                         </div>
         
@@ -788,10 +767,10 @@
                     <asp:BoundField HeaderText="Box2" DataField="TextBox2" Visible="true" />
                     <asp:BoundField HeaderText="code" DataField="txtcode" Visible="true"/>
                     <asp:BoundField HeaderText="Description" DataField="txtDescription" Visible="true" />
-                    <asp:BoundField HeaderText="Price" DataField="txtPrice" Visible="true" />
+                    <asp:BoundField HeaderText="Price" DataField="txtPrice1" Visible="true" />
                     <asp:BoundField HeaderText="PSize" DataField="txtPSize" Visible="true" />
                     <asp:BoundField HeaderText="Pascks" DataField="txtPascks" Visible="true" />
-                    <asp:BoundField HeaderText="Nos" DataField="txtNos" Visible="true" />
+                    <asp:BoundField HeaderText="Nos" DataField="txtNos1" Visible="true" />
                     <asp:BoundField HeaderText="Discount" DataField="txtDis" Visible="true"/>
                     <asp:BoundField HeaderText="Amount" DataField="txtAmount" Visible="true"/>
 
@@ -1095,7 +1074,20 @@
                 });
             });
 
-        </script>       
+        </script>   
+    
+    <script>
+        function calculateAmount() {
+            var txtPriceValue = parseFloat($('#<%=txtPrice.ClientID%>').val()) || 0;
+        var txtNosValue = parseFloat($('#<%=txtNos.ClientID%>').val()) || 0;
+
+        var result = txtPriceValue * txtNosValue;
+
+        $('#<%=txtAmount.ClientID%>').val(result.toFixed(2)); // Assuming you want to display the result with two decimal places
+        }
+    </script>
+
+t>
 
 
                 
