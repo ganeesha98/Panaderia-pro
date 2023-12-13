@@ -652,8 +652,7 @@
 
          <div class="form-group row">
                     <div id="Panel1" style="background-color: #ffa19926; height: 358px; width: 1103px;">
-                        <div class="col-sm-4">
-                            
+                        <div class="col-sm-4">                            
                             </div>
 
                          <table id="GridView1" class="auto-style335">
@@ -677,11 +676,9 @@
                                                 <div id="gridViewPlaceholder2"></div>
                                             </div>
                                         </div>
-                                    </div>
-        
+                                    </div>       
        
          </td>
-
                     <th class="auto-style345">Line</th>
                     <th class="auto-style368"> </th>
                     <th class="auto-style359">Item code</th>
@@ -700,10 +697,7 @@
            <tbody>
            </tbody>
            </table>
-
-
-
-        
+             
 <table id="yourGridViewTable" class="auto-style371">
     <tr>
        
@@ -750,10 +744,8 @@
       <td class="auto-style333">
     <button type="button" id="Button2" style="width: 46px" onclick="addRowToGridView()">+</button>
 </td>
-
-
     </tr>
-    n
+    
 </table> 
                         </div>
         
@@ -794,8 +786,6 @@
                 <div class="col-sm-50">
                     &nbsp; <input type="text" id="txttotal" class="auto-style326" style="width: 116px"></div>
             </div>
-
-
 
         </div>
     </div>
@@ -1087,7 +1077,6 @@
         }
     </script>
 
-t>
 
 
                 

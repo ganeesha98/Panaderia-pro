@@ -44,10 +44,19 @@ namespace Panaderia.Form.Inventory
             {
                 LoadSupData();
             }
+            // Your connection string
+            string connectionString = "Data Source=CCPHIT-GUNATLAP\\SQLEXPRESS;Initial Catalog=Panaderia;Integrated Security=True";
+            ScriptManager.RegisterStartupScript(this, GetType(), "SaveDataScript", "function saveDataToServer() { SaveData(); }", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "GetDataScript", "function refreshGridView() { GetData(); }", true);
+            // Your existing code
+
+            // Register the SaveData method as a web service
+            ScriptManager.RegisterStartupScript(this, GetType(), "SaveDataScript", "function saveDataToServer() { SaveData(); }", true);
+
             {
                 LoadItemData();
             }
-            
+
         }
 
 
@@ -95,8 +104,8 @@ namespace Panaderia.Form.Inventory
                         connection.Open();
                         SqlDataReader reader = cmd.ExecuteReader();
 
-                        GridView3.DataSource = reader;
-                        GridView3.DataBind();
+                        GridView2.DataSource = reader;
+                        GridView2.DataBind();
                     }
                     catch (Exception ex)
                     {
@@ -113,9 +122,9 @@ namespace Panaderia.Form.Inventory
 
         private void LoadUserData() { }
 
-       
 
-        protected void btnSave_Click(object sender, EventArgs e)
+
+        protected void btnSave1_Click(object sender, EventArgs e)
         {
             string connectionString = "Data Source=CCPHIT-GUNATLAP\\SQLEXPRESS;Initial Catalog=Panaderia;Integrated Security=True";
 
@@ -143,7 +152,7 @@ namespace Panaderia.Form.Inventory
                     cmd.Parameters.AddWithValue("@SupplierReference", txtreferance.Text);
                     cmd.Parameters.AddWithValue("@Discount", txtdiscount.Text);
                     cmd.Parameters.AddWithValue("@Comments", txtcomments.Text);
-                   
+
 
                     con.Open();
                     cmd.ExecuteNonQuery();
@@ -155,6 +164,7 @@ namespace Panaderia.Form.Inventory
                     lblShowMessage.Text = "Successfully inserted!";
                 }
             }
+            
         }
 
 
@@ -223,6 +233,15 @@ namespace Panaderia.Form.Inventory
         }
 
         protected void GridView3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        protected void yourGridView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e)
         {
 
         }
