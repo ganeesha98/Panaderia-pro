@@ -165,17 +165,17 @@ namespace Panaderia.Form.Inventory
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void btnBrowse_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void btnExit_Click(object sender, EventArgs e)
         {
-
+           // Response.Redirect("~/Dashboard.aspx");
         }
 
         protected void Unnamed4_SelectedIndexChanged(object sender, EventArgs e)

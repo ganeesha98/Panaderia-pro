@@ -17,14 +17,16 @@ namespace Panaderia.Form.Inventory
 {
     public partial class Pur_Purchase_Order : System.Web.UI.Page
     {
+        DataTable dt;
+        Int64 totalprice;
         protected void Page_Load(object sender, EventArgs e)
 
         {
             // Get the current date and time from the database or server.
-            DateTime dt = DateTime.Now;
+            DateTime dt1 = DateTime.Now;
 
             // Set the value of the TextBox control.
-            date.Text = dt.ToString("yyyy-MM-dd HH:mm:ss");
+            date.Text = dt1.ToString("yyyy-MM-dd HH:mm:ss");
 
             // Get the valid login user name from the default.aspx.cs code btnLogin_Click() function.
             string validUsername = (string)System.Web.HttpContext.Current.Session["ValidUsername"];
@@ -35,7 +37,20 @@ namespace Panaderia.Form.Inventory
 
             // Load the user data from the database when the page is loaded
             if (!IsPostBack) // Ensure that the code is executed only on the initial page load, not on postbacks
-           
+           {
+                dt = new DataTable();
+                dt.Columns.Add("Line");
+                dt.Columns.Add("item_code");
+                dt.Columns.Add("Description");
+                dt.Columns.Add("price");
+                dt.Columns.Add("psize");
+                dt.Columns.Add("packs");
+                dt.Columns.Add("nos");
+                dt.Columns.Add("discount");
+                dt.Columns.Add("Amount");
+                Session["data"] = dt;
+                TextBox2.Text = "1";
+            }
 
             {
                 LoadUserData();
@@ -136,6 +151,7 @@ namespace Panaderia.Form.Inventory
                    (@CompanyID, @IPS_Date, @Branch, @TxnType, @Number, @User, @Code, @Sup_Name, @Amount, @SupplierReference, @Discount, @Comments,@Sup_nu)";
 
                 using (SqlCommand cmd = new SqlCommand(insertQuery, con))
+
                 {
                     // No need to close the connection before opening it
 
@@ -219,7 +235,7 @@ namespace Panaderia.Form.Inventory
 
 
 
-
+        
         protected void btnBrowse_Click(object sender, EventArgs e)
         {
 
@@ -229,6 +245,26 @@ namespace Panaderia.Form.Inventory
         protected void btnExit_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Dashboard.aspx");
+
+        }
+        private void Button2_click (object sender , EventArgs e)
+        {
+            txttotal.Text = "0";
+
+            for (int i = 0; i < yourGridView.Rows.Count; i++)
+            {
+                TableCell amountCell = yourGridView.Rows[i].Cells[9];
+                TextBox txtAmount = amountCell.FindControl("txtAmount1") as TextBox;
+
+                if (txtAmount != null)
+                {
+                    // Access the value using the Text property
+                    string amountValue = txtAmount.Text;
+
+                    // Add the value to the total
+                    txttotal.Text = (double.Parse(txttotal.Text) + double.Parse(amountValue)).ToString();
+                }
+            }
 
         }
 
@@ -243,6 +279,16 @@ namespace Panaderia.Form.Inventory
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+
+
+
+
+
 
         }
     }

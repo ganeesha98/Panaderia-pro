@@ -220,6 +220,7 @@
     <Content Include="Form\Inventory\additem.aspx" />
     <Content Include="Form\Inventory\Adjustment_Excess.aspx" />
     <Content Include="Form\Inventory\Adjustment_Shortage.aspx" />
+    <Content Include="Form\Inventory\amount.aspx" />
     <Content Include="Form\Inventory\Pur_Goods_Receive.aspx" />
     <Content Include="Form\Inventory\Pur_Purchase_Order.aspx" />
     <Content Include="Form\Inventory\Pur_Purchase_Return.aspx" />
@@ -227,6 +228,7 @@
     <Content Include="Form\Inventory\Sales_Order_Credit.aspx" />
     <Content Include="Form\Inventory\Sales_Order_Data_Load.aspx" />
     <Content Include="Form\Inventory\Sales_Return_Credit.aspx" />
+    <Content Include="Form\Inventory\totalAmount.aspx" />
     <Content Include="Form\Login.aspx" />
     <Content Include="Form\Master_Files\MY.aspx" />
     <Content Include="Form\Master_Files\Product.aspx" />
@@ -729,6 +731,13 @@
     <Compile Include="Form\Inventory\Adjustment_Shortage.aspx.designer.cs">
       <DependentUpon>Adjustment_Shortage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Form\Inventory\amount.aspx.cs">
+      <DependentUpon>amount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form\Inventory\amount.aspx.designer.cs">
+      <DependentUpon>amount.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Form\Inventory\Pur_Goods_Receive.aspx.cs">
       <DependentUpon>Pur_Goods_Receive.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -777,6 +786,13 @@
     </Compile>
     <Compile Include="Form\Inventory\Sales_Return_Credit.aspx.designer.cs">
       <DependentUpon>Sales_Return_Credit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Inventory\totalAmount.aspx.cs">
+      <DependentUpon>totalAmount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form\Inventory\totalAmount.aspx.designer.cs">
+      <DependentUpon>totalAmount.aspx</DependentUpon>
     </Compile>
     <Compile Include="Form\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
