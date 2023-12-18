@@ -166,7 +166,7 @@ namespace Panaderia.Form.Inventory
             TextBox6.Text = "";
             TextBox7.Text = "";
             TextBox8.Text = "";
-            calculateSum();
+            
         }
         private void calculateSum()
         {
