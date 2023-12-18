@@ -749,39 +749,39 @@
                 <td>&nbsp;</td>
             </tr>
         </table>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" ShowFooter="True" AutoGenerateSelectButton="True" Height="139px" Width="823px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" ShowFooter="True" AutoGenerateSelectButton="True" Height="139px" Width="823px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" HorizontalAlign="Justify">
             <Columns>
                 <asp:BoundField DataField="Line" HeaderText="Line">
                 <ItemStyle HorizontalAlign="Right" />
                 </asp:BoundField>
-                <asp:BoundField DataField="item_code" HeaderText="item_code">
-                <ItemStyle HorizontalAlign="Justify" />
+                <asp:BoundField DataField="item_code" HeaderText="Item_code">
+                <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
                 <asp:BoundField DataField="Description" HeaderText="Description">
-                <ItemStyle HorizontalAlign="Center" />
+                <ItemStyle HorizontalAlign="Left" />
                 </asp:BoundField>
                 <asp:BoundField DataField="price" HeaderText="Price">
-                <ItemStyle HorizontalAlign="Center" />
+                <ItemStyle HorizontalAlign="Right" />
                 </asp:BoundField>
-                <asp:BoundField DataField="psize" HeaderText="psize">
-                <ItemStyle HorizontalAlign="Center" />
+                <asp:BoundField DataField="psize" HeaderText="Psize">
+                <ItemStyle HorizontalAlign="Right" />
                 </asp:BoundField>
                 <asp:BoundField DataField="packs" HeaderText="packs">
-                <ItemStyle HorizontalAlign="Center" />
+                <ItemStyle HorizontalAlign="Right" />
                 </asp:BoundField>
                 <asp:BoundField DataField="nos" HeaderText="nos">
-                <ItemStyle HorizontalAlign="Center" />
+                <ItemStyle HorizontalAlign="Right" />
                 </asp:BoundField>
-                <asp:BoundField DataField="discount" HeaderText="discount">
-                <ItemStyle HorizontalAlign="Center" />
+                <asp:BoundField DataField="discount" HeaderText="Discount">
+                <ItemStyle HorizontalAlign="Right" />
                 </asp:BoundField>
                 <asp:BoundField DataField="Amount" HeaderText="Amount" />
             </Columns>
-            <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
-            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
-            <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
-            <RowStyle BackColor="White" ForeColor="#330099" />
-            <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
+            <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Right" />
+            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" HorizontalAlign="Right"/>
+            <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Right" />
+            <RowStyle BackColor="White" ForeColor="#330099" HorizontalAlign="Right" />
+            <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" HorizontalAlign="Right" />
             <SortedAscendingCellStyle BackColor="#FEFCEB" />
             <SortedAscendingHeaderStyle BackColor="#AF0101" />
             <SortedDescendingCellStyle BackColor="#F6F0C0" />

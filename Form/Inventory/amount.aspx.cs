@@ -154,7 +154,19 @@ namespace Panaderia.Form.Inventory
 
             }
 
-           
+            dt.Rows.Add(dr);
+            GridView1.DataSource = dt;
+            GridView1.DataBind();
+            Session["buyitems"] = dt;
+            TextBox1.Text = (dt.Rows.Count + 1).ToString();
+            TextBox3.Text = "";
+            TextBox2.Text = "";
+            TextBox4.Text = "";
+            TextBox5.Text = "";
+            TextBox6.Text = "";
+            TextBox7.Text = "";
+            TextBox8.Text = "";
+            calculateSum();
         }
         private void calculateSum()
         {

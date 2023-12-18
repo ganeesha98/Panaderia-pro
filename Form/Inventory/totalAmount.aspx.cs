@@ -64,7 +64,20 @@ namespace Panaderia.Form.Inventory
                 totalprice = Convert.ToInt64(TextBox7.Text) * Convert.ToInt64(TextBox4.Text);
                 dr["Amount"] = totalprice.ToString();
             }
-           
+            dt.Rows.Add(dr);
+            GridView1.DataSource = dt;
+            GridView1.DataBind();
+            Session["buyitems"] = dt;
+            TextBox2.Text = (dt.Rows.Count + 1).ToString();
+            TextBox3.Text = "";
+            TextBox1.Text = "";
+            TextBox4.Text = "";
+            TextBox5.Text = "";
+            TextBox6.Text = "";
+            TextBox7.Text = "";
+            TextBox8.Text = "";
+            calculateSum();
+        }
         private void calculateSum()
         {
             Int32 grandtotal = 0;
