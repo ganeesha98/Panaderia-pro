@@ -180,6 +180,7 @@ namespace Panaderia.Form.Inventory
                     lblShowMessage.Text = "Successfully inserted!";
                 }
             }
+
             
         }
 

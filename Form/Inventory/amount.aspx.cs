@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace Panaderia.Form.Inventory
 {
@@ -236,10 +237,7 @@ namespace Panaderia.Form.Inventory
               return words;
           }*/
 
-        protected void btnSave_Click(object sender, EventArgs e)
-        {
 
-        }
 
         protected void btnBrowse_Click(object sender, EventArgs e)
         {
@@ -248,7 +246,7 @@ namespace Panaderia.Form.Inventory
 
         protected void btnExit_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("~/Dashboard.aspx");
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -277,7 +275,91 @@ namespace Panaderia.Form.Inventory
             calculateSum();
         }
 
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Retrieve the DataTable from the session
+                DataTable dt = (DataTable)Session["data"];
 
+                // Calculate and add the grand total to the database
+                decimal grandTotal = 0;
+                foreach (DataRow row in dt.Rows)
+                {
+                    grandTotal += Convert.ToDecimal(row["Amount"]);
+                }
+
+                // Assuming you have a SqlConnection and other necessary objects for database access
+                string connectionString = "Data Source=CCPHIT-GUNATLAP\\SQLEXPRESS;Initial Catalog=Panaderia;Integrated Security=True";
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Insert into [dbo].[Inv_Purchase_Order_new]
+                    string insertMainQuery = @"INSERT INTO [dbo].[Inv_Purchase_Order_new]
+               ([CompanyID], [IPS_Date], [Branch], [TxnType], [Number], [User], [Code], [Sup_Name], [Amount], [SupplierReference], [Discount], [Comments],[Sup_nu])
+               VALUES
+               (@CompanyID, @IPS_Date, @Branch, @TxnType, @Number, @User, @Code, @Sup_Name, @Amount, @SupplierReference, @Discount, @Comments,@Sup_nu)";
+
+                    using (SqlCommand cmdMain = new SqlCommand(insertMainQuery, connection))
+                    {
+                        cmdMain.Parameters.AddWithValue("@CompanyID", company.Text);
+                        cmdMain.Parameters.AddWithValue("@IPS_Date", date.Text);
+                        cmdMain.Parameters.AddWithValue("@Branch", Branch.Text);
+                        cmdMain.Parameters.AddWithValue("@TxnType", TxnType.Text);
+                        cmdMain.Parameters.AddWithValue("@Number", Number.Text);
+                        cmdMain.Parameters.AddWithValue("@User", user.Text);
+                        cmdMain.Parameters.AddWithValue("@Sup_nu", txtsupplier.Text);
+                        cmdMain.Parameters.AddWithValue("@Code", txtsupid.Text);
+                        cmdMain.Parameters.AddWithValue("@Sup_Name", txtsup.Text);
+                        cmdMain.Parameters.AddWithValue("@Amount", txtamount.Text);
+                        cmdMain.Parameters.AddWithValue("@SupplierReference", txtreferance.Text);
+                        cmdMain.Parameters.AddWithValue("@Discount", txtdiscount.Text);
+                        cmdMain.Parameters.AddWithValue("@Comments", txtcomments.Text);
+
+                        cmdMain.ExecuteNonQuery();
+                    }
+
+                    // Insert into purchase_order_footer
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        string insertDetailQuery = "INSERT INTO purchase_order_footer (ItemCode, Description, Price, PSize, Packs, Nos, Discount, Amount, GrandTotal) " +
+                                     "VALUES (@ItemCode, @Description, @Price, @PSize, @Packs, @Nos, @Discount, @Amount, @GrandTotal)";
+
+                        using (SqlCommand command = new SqlCommand(insertDetailQuery, connection))
+                        {
+                            command.Parameters.AddWithValue("@ItemCode", row["item_code"]);
+                            command.Parameters.AddWithValue("@Description", row["Description"]);
+                            command.Parameters.AddWithValue("@Price", Convert.ToDecimal(row["price"]));
+                            command.Parameters.AddWithValue("@PSize", Convert.ToInt32(row["psize"]));
+                            command.Parameters.AddWithValue("@Packs", Convert.ToInt32(row["packs"]));
+                            command.Parameters.AddWithValue("@Nos", Convert.ToInt32(row["nos"]));
+                            command.Parameters.AddWithValue("@Discount", Convert.ToDecimal(row["discount"]));
+                            command.Parameters.AddWithValue("@Amount", Convert.ToDecimal(row["Amount"]));
+                            command.Parameters.AddWithValue("@GrandTotal", grandTotal);
+
+                            command.ExecuteNonQuery();
+                        }
+                    }
+                }
+
+                // Clear the DataTable and GridView after saving
+                dt.Clear();
+                GridView1.DataSource = null;
+                GridView1.DataBind();
+                Session["data"] = dt;
+
+                divMsg.Visible = true;
+                lblShowMessage.Visible = true;
+                lblShowMessage.Text = "Successfully inserted!";
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions (display error message, log, etc.)
+                Response.Write($"Error: {ex.Message}");
+            }
+        }
 
     }
 }
+
