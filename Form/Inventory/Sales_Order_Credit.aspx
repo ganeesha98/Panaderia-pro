@@ -3,10 +3,10 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-   
+<head runat="server">   
 
-    <style>
+
+     <style>
         .navbar-inverse.navbar-nav > li > a:focus, .navbar- inverse.navbar- nav > li > a:hover {
             color: #090a22;
             background-color: transparent;
@@ -38,6 +38,9 @@
   background-color: #0000;
 }
 
+.alignSuccessMessage{
+    margin-left:90px;
+}
 .input-field1 {
   width: 100%;
   padding: 5px;
@@ -91,13 +94,28 @@
 
     </style>
 
-   
+    <style>
+        .bordered{
+            width:800px;
+            height:auto;
+            padding:20px;
+            border:1px solid black;
+        }
+
+        .row{
+            width:auto;
+            height:auto;
+
+        }
+    </style> 
+
+    <title></title>
 
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title> Sales Order Credit</title>
+    
 
-    <!-- Bootstrap CSS -->
+     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 
     <!-- jQuery -->
@@ -133,34 +151,15 @@
         }
     .auto-style327 {
         display: block;
-        width: 98%;
+        width: 100%;
         height: 34px;
         padding: 6px 12px;
         color: #555;
         border: 1px solid #ccc;
         border-radius: 4px;       
     }
-    .auto-style328 {
-        display: block;
-        width: 59%;
-        height: 34px;
-        padding: 6px 12px;
-        color: #777;
-        border: 1px solid #ccc;
-        border-radius: 4px;       
-    }
-    .auto-style400{
-        display:block;
-        width: 127%;
-        height: 34px;
-        padding: 6px 12px;
-        color: #555;
-        border: 1px solid #ccc;
-        border-radius: 4px;
 
-    }
-
-</style>
+    </style>
 
     <style>
         .form-group row{
@@ -174,25 +173,57 @@
         col-sm-2 col-form-label{
 
         }
-        .auto-style329 {
-            width: 1083px;
-        }
-        .auto-style330 {
-            width: 1011px;
-            margin-left: 35px;
-        }
-    </style>
+        </style>
+
 
     <style>
 
-        
+        .auto-style32 {
+  margin: 0 auto;
+}
 
         footer {
   text-align: center;
 }
-       
 
+        
+}
     </style>
+ <style>
+        /* Styles for the modal popup */
+        .modal {
+            display:;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+
+        .modal-content-container {
+            max-height: 600px; /* Adjust the maximum height as needed */
+            overflow-y: auto;
+        }
+    </style>
+
+    <style>
+        /* Style for selected row */
+        .selected-row {
+            background-color: yellow;
+        }
+        </style> 
 
  <style>
         /* Styles for the modal popup */
@@ -263,16 +294,40 @@
         .selected-row2 {
             background-color: yellow;
         }
-        .auto-style331 {
+        .auto-style328 {
+            width: 77px;
+        }
+        .auto-style329 {
+            width: 84px;
+        }
+        .auto-style330 {
+            width: 82px;
+        }
+        .auto-style335 {
+            width: 28px;
+        }
+        .auto-style336 {
+            width: 76px;
+        }
+        .auto-style337 {
+            width: 27px;
+        }
+        .auto-style338 {
+            width: 30px;
+        }
+        .auto-style339 {
+            width: 57px;
+        }
+        .auto-style340 {
+            width: 69px;
+        }
+        .auto-style341 {
             width: 59px;
         }
-        .auto-style332 {
-            width: 39px;
+        .auto-style342 {
+            width: 50px;
         }
-        .auto-style333 {
-            height: 28px;
-        }
-    </style> 
+        </style> 
 
    
 
@@ -627,85 +682,142 @@
 
  
 
-                <div class="form-group row">
+                 <div id="Panel1" style="background-color: #ffa19926; height: auto; width: 1103px;">
 
-                    <table class="auto-style44">
+         <div style="visibility: visible; overflow: auto; cursor: auto; display: table-column; clip: rect(auto, auto, auto, auto)">
 
-                        <tr>
-                            <td class="auto-style333">
-                                    <button type="button" id="btnclick" class="btn btn-secondary"   style="border-color: #333333; background-color: #8689cf4d; width: 62px; font-size: 9px;">...</button>
-                                    <div id="myModal2" class="modal">
-                                        <div class="modal-content2">
-                                            <div class="modal-content-container2" style="overflow: auto">
-                                                <!-- Modal header with a close button -->
-                                                <div class="modal-header2">
-                                                    <h2>Item Master List</h2>
-                                                    <button id="closeModal2">Clear Selection</button>
-                                                </div>
-                                                <!-- GridView -->
-                                                <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="True"></asp:GridView>
+                </asp:Panel>
+         </div>
+        <table class="nav-justified">
+            <tr>
 
-                                                <!-- Placeholder for the GridView -->
-                                                <div id="gridViewPlaceholder2"></div>
+                <td class="auto-style340" colspan="2">
+                     <button type="button" id="btnclick" class="btn btn-secondary" style="border-color: #333333; background-color: #8689cf4d; width: 12px; font-size: 9px;">...</button>
+                                <div id="myModal2" class="modal">
+                                    <div class="modal-content2">
+                                        <div class="modal-content-container2" style="overflow: auto">
+                                            <!-- Modal header with a close button -->
+                                            <div class="modal-header2">
+                                                <h2>Item Master List</h2>
+                                                <button id="closeModal2">Clear Selection</button>
                                             </div>
+                                            <!-- GridView -->
+                                            <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="True"></asp:GridView>
+
+                                            <!-- Placeholder for the GridView -->
+                                            <div id="gridViewPlaceholder2"></div>
                                         </div>
                                     </div>
-                                </td>
-                                <td class="auto-style333">
-                                    <input type="text" id="txtitem_nu" class="auto-style331">
-                                </td>
-                                <td class="auto-style333">
-                                    <input type="text" id="TextBox2" class="auto-style332">
-                                </td>
-                                <td class="auto-style333">
-                                    <input type="text" id="txtcode" style="width: 81px;">
-                                </td>
-                                <td class="auto-style333">
-                                    <input type="text" id="txtDescription" style="width: 211px;">
-                                </td>
-                                <td class="auto-style333">
-                                    <input type="text" id="txtPrice" style="width: 86px;">
-                                </td>
-                                <td class="auto-style333">
-                                    <input type="text" id="txtPSize" style="width: 47px;">
-                                </td>
-                                <td class="auto-style333">
-                                    <input type="text" id="txtPascks" style="width: 65px;">
-                                </td>
-                                <td class="auto-style333">
-                                    <input type="text" id="txtNos" style="width: 65px;">
-                                </td>
-                                <td class="auto-style333">
-                                    <input type="text" id="txtDis" style="width: 65px;">
-                                </td>
-                                <td class="auto-style333">
-                                    <input type="text" id="txtAmount" style="width: 75px;">
-                                </td>
-                                <td class="auto-style333">
-                                    <button id="Button1" style="width: 46px;">+</button>
-                                </td>
+                                </div>
+                    <strong>&nbsp;&nbsp;Line</strong></td>
 
-                        </tr>
-
-                    </table>
-
-                    <br />
-
-                    <div id="Panel1" style="background-color: #99ccff30; height: 358px; width: 903px;">
-
-                    </div>
-
-                </div>
+                <th class="auto-style339"> </th>
+                <td class="auto-style336"><strong>Item Code</strong></td>
+                <td class="auto-style328"><strong>&nbsp; Descrition</strong></td>
+                <td class="auto-style341"><strong>Price</strong></td>
+                <td class="auto-style342"><strong>PSize</strong></td>
+                <td class="auto-style335"><strong>Packs</strong></td>
+                <td class="auto-style339"><strong>NOS</strong></td>
+                <td class="auto-style340"><strong>Discount</strong></td>                
+                <td class="auto-style347"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <asp:TextBox ID="TextBox1" runat="server" Width="95px"></asp:TextBox>
+                </td>
+                <td class="auto-style339">
+                    <asp:TextBox ID="TextBox3" runat="server" Width="59px"></asp:TextBox>
+                </td>
+                <td class="auto-style336">
+                    <asp:TextBox ID="TextBox2" runat="server" Width="75px" style="text-align: center"></asp:TextBox>
+                </td>
+                <td class="auto-style328">
+                    <asp:TextBox ID="TextBox4" runat="server" style="text-align: center" Width="143px"></asp:TextBox>
+                </td>
+                <td class="auto-style341">
+                    <asp:TextBox ID="TextBox5" runat="server" Width="66px"></asp:TextBox>
+                </td>
+                <td class="auto-style342">
+                    <asp:TextBox ID="TextBox6" runat="server" Width="57px"></asp:TextBox>
+                </td>
+                <td class="auto-style335">
+                    <asp:TextBox ID="TextBox7" runat="server" Width="77px"></asp:TextBox>
+                </td>
+                <td class="auto-style339">
+                    <asp:TextBox ID="TextBox8" runat="server" Width="63px"></asp:TextBox>
+                </td>
+                <td class="auto-style340">
+                    <asp:TextBox ID="TextBox9" runat="server" Width="77px"></asp:TextBox>
+                </td>
+               
+                <td>
+                    <asp:Button ID="Button2" runat="server" Text="+" Width="78px" OnClick="Button2_Click" />
+                </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style337">&nbsp;</td>
+                <td class="auto-style338">&nbsp;</td>
+                <td class="auto-style339">&nbsp;</td>
+                <td class="auto-style336">&nbsp;</td>
+                <td class="auto-style328">&nbsp;</td>
+                <td class="auto-style341">&nbsp;</td>
+                <td class="auto-style342">&nbsp;</td>                
+                <td class="auto-style335">&nbsp;</td>
+                <td class="auto-style339">&nbsp;</td>
+                <td class="auto-style340">&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" ShowFooter="True" AutoGenerateSelectButton="True" Height="139px" Width="823px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" HorizontalAlign="Justify" AutoGenerateDeleteButton="True" OnRowDeleting="GridView1_RowDeleting">
+            <Columns>                
+                <asp:BoundField DataField="Line" HeaderText="Line">
+                <ItemStyle HorizontalAlign="Right" />
+                </asp:BoundField>
+                <asp:BoundField DataField="item_code" HeaderText="Item_code">
+                <ItemStyle HorizontalAlign="Center" />
+                </asp:BoundField>
+                <asp:BoundField DataField="Description" HeaderText="Description">
+                <ItemStyle HorizontalAlign="Left" />
+                </asp:BoundField>
+                <asp:BoundField DataField="price" HeaderText="Price">
+                <ItemStyle HorizontalAlign="Right" />
+                </asp:BoundField>
+                <asp:BoundField DataField="psize" HeaderText="Psize">
+                <ItemStyle HorizontalAlign="Right" />
+                </asp:BoundField>
+                <asp:BoundField DataField="packs" HeaderText="packs">
+                <ItemStyle HorizontalAlign="Right" />
+                </asp:BoundField>
+                <asp:BoundField DataField="nos" HeaderText="nos">
+                <ItemStyle HorizontalAlign="Right" />
+                </asp:BoundField>
+                <asp:BoundField DataField="discount" HeaderText="Discount" SortExpression="discount">
+                <ItemStyle HorizontalAlign="Right" />
+                </asp:BoundField>
+                <asp:BoundField DataField="Amount" HeaderText="Amount" />
+            </Columns>
+            <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Right" />
+            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" HorizontalAlign="Right"/>
+            <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Right" />
+            <RowStyle BackColor="White" ForeColor="#330099" HorizontalAlign="Right" />
+            <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" HorizontalAlign="Right" />
+            <SortedAscendingCellStyle BackColor="#FEFCEB" />
+            <SortedAscendingHeaderStyle BackColor="#AF0101" />
+            <SortedDescendingCellStyle BackColor="#F6F0C0" />
+            <SortedDescendingHeaderStyle BackColor="#7E0000" />
+        </asp:GridView>
+        
+        </asp:Panel>
 
             </div>
-
-        </div>
-
-    </div>
-
-    <br />
-
-    <br />
+                <br />
+                <br />
+                <br />
+                <br />
 
     <div class="form-group row">
 
@@ -835,17 +947,15 @@
             var selectedRow2 = null;
 
             // Input fields   
-            var txtitem_nuInput = document.getElementById('txtitem_nu');
-            var txtcodeInput = document.getElementById('txtcode');
-            var txtDescriptionInput = document.getElementById('txtDescription');
-            var txtPriceInput = document.getElementById('txtPrice');
-            var txtPSizeInput = document.getElementById('txtPSize');
-            var txtPascksInput = document.getElementById('txtPascks');
-            var txtNosInput = document.getElementById('txtNos');
-            var txtDisInput = document.getElementById('txtDis');
-            var txtAmountInput = document.getElementById('txtAmount');
-
-
+            var txtitem_nuInput = document.getElementById('TextBox3');
+            var txtcodeInput = document.getElementById('TextBox2');
+            var txtDescriptionInput = document.getElementById('TextBox4');
+            var txtPriceInput = document.getElementById('TextBox5');
+            var txtPSizeInput = document.getElementById('TextBox6');
+            var txtPascksInput = document.getElementById('TextBox7');
+            var txtNosInput = document.getElementById('TextBox8');
+            var txtDisInput = document.getElementById('TextBox9');
+            //var txtAmount1Input = document.getElementById('txtAmount1'); 
 
 
             // Function to handle row selection and highlight
@@ -868,7 +978,7 @@
                 txtPascksInput.value = cells[5].textContent;
                 txtNosInput.value = cells[6].textContent;
                 txtDisInput.value = cells[7].textContent;
-                txtAmountInput.value = cells[8].textContent;
+                txtAmount1Input.value = cells[8].textContent;
 
             }
 
@@ -925,7 +1035,7 @@
                 });
             });
 
-        </script>   
+        </script>       
  
 
         <script>

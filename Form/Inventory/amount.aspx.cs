@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 
+
 namespace Panaderia.Form.Inventory
 {
 
@@ -241,7 +242,7 @@ namespace Panaderia.Form.Inventory
 
         protected void btnBrowse_Click(object sender, EventArgs e)
         {
-
+           
         }
 
         protected void btnExit_Click(object sender, EventArgs e)
@@ -342,21 +343,19 @@ namespace Panaderia.Form.Inventory
                         }
                     }
                 }
-
-                // Clear the DataTable and GridView after saving
+                                
                 dt.Clear();
                 GridView1.DataSource = null;
                 GridView1.DataBind();
                 Session["data"] = dt;
 
                 divMsg.Visible = true;
-                lblShowMessage.Visible = true;
-                lblShowMessage.Text = "Successfully inserted!";
+                    lblShowMessage.Visible = true;
+                    lblShowMessage.Text = "Successfully inserted!";
             }
             catch (Exception ex)
             {
-                // Handle exceptions (display error message, log, etc.)
-                Response.Write($"Error: {ex.Message}");
+              
             }
         }
 

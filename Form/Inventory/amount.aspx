@@ -576,6 +576,7 @@
             </div>
         </div>
     <br />
+
         <div class="row">
             <div class="col-md-10 alignSuccessMessage">
             <div id="divMsg" visible="false" runat="server" class="alert alert-success fade-in">
@@ -583,6 +584,7 @@
             </div>
                 </div>
         </div>
+
          <div class="container mt-5">
 
         <div class="bordere">
@@ -644,10 +646,10 @@
                 <div class="form-group row">
                     <label for="txtdiscount" class="col-sm-4 col-form-label">Discount</label>
                     <div class="col-sm-8">
-                        <asp:TextBox ID="txtdiscount" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtdiscount" runat="server" CssClass="form-control">0</asp:TextBox>
                     </div>
                 </div>
-
+                
                 <div class="form-group row">
                     <label for="txtcomments" class="col-sm-4 col-form-label">Comments</label>
                     <div class="col-sm-8">
@@ -665,7 +667,7 @@
 
                 </asp:Panel>
          </div>
-        <table style="width:100%;">
+        <table class="nav-justified">
             <tr>
 
                 <td class="auto-style340" colspan="2">
