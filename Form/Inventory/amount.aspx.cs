@@ -117,7 +117,6 @@ namespace Panaderia.Form.Inventory
                     }
                 }
             }
-
         }
 
         private void LoadUserData() { }
@@ -274,7 +273,7 @@ namespace Panaderia.Form.Inventory
 
             // Recalculate the total sum
             calculateSum();
-        }
+        } 
 
         protected void btnSave_Click(object sender, EventArgs e)
         {

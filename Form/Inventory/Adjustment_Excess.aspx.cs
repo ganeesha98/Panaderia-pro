@@ -126,7 +126,7 @@ namespace Panaderia.Form.Inventory
             // Update GridView and session
             GridView1.DataSource = dt;
             GridView1.DataBind();
-            Session["buyitems"] = dt;
+            Session["buyitems"] = dt;         
 
             // Reset input fields and recalculate sum
             TextBox1.Text = (dt.Rows.Count + 1).ToString();
@@ -307,7 +307,7 @@ namespace Panaderia.Form.Inventory
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            //meth
         }
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {

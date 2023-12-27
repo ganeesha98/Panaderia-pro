@@ -278,6 +278,7 @@
         }
     </style>
 
+
     <style>
         /* Style for selected row */
         .selected-row2 {
