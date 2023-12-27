@@ -49,7 +49,7 @@ namespace Panaderia.Form.Inventory
             {
                 LoadUserData();
             }
-            
+
             {
                 LoadCusData();
             }
@@ -151,58 +151,98 @@ namespace Panaderia.Form.Inventory
 
         private void LoadUserData() { }
 
-      
-        
+
+
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            string connectionString = "Data Source=CCPHIT-GUNATLAP\\SQLEXPRESS;Initial Catalog=Panaderia;Integrated Security=True";
-
-            using (SqlConnection con = new SqlConnection(connectionString))
+            try
             {
-                string insertQuery = @"INSERT INTO [dbo].[sales_return_Credit]
+                // Retrieve the DataTable from the session
+                DataTable dt = (DataTable)Session["data"];
+
+                // Calculate and add the grand total to the database
+                decimal grandTotal = 0;
+                foreach (DataRow row in dt.Rows)
+                {
+                    grandTotal += Convert.ToDecimal(row["Amount"]);
+                }
+
+                // Assuming you have a SqlConnection and other necessary objects for database access
+                string connectionString = "Data Source=CCPHIT-GUNATLAP\\SQLEXPRESS;Initial Catalog=Panaderia;Integrated Security=True";
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Insert into [dbo].[Inv_Purchase_Order_new]
+                    string insertMainQuery = @"INSERT INTO [dbo].[sales_return_Credit]
            ([CompanyID],[IPS_Date],[Branch],[TxnType],[Number],[User],[cus_nu],[code],[cus_name],[Amount],[Discount],[Comments],[InvoiceNo]
            ,[InvoiceAmount],[InvoiceDate])
      VALUES
     (@CompanyID, @IPS_Date, @Branch, @TxnType, @Number, @User, @cus_nu, @code, @cus_name, @Amount,@Discount,@Comments,@InvoiceNo,@InvoiceAmount,@InvoiceDate)";
 
-
-                using (SqlCommand cmd = new SqlCommand(insertQuery, con))
-                {
-
-                    con.Close();
-
-
-                    cmd.Parameters.AddWithValue("@CompanyID", company.Text);
-                    cmd.Parameters.AddWithValue("@IPS_Date", date.Text);
-                    cmd.Parameters.AddWithValue("@Branch", Branch.Text);
-                    cmd.Parameters.AddWithValue("@TxnType", TxnType.Text);
-                    cmd.Parameters.AddWithValue("@Number", Number.Text);
-                    cmd.Parameters.AddWithValue("@User", user.Text);
-                    cmd.Parameters.AddWithValue("@cus_nu", txtCustomer.Text);
-                    cmd.Parameters.AddWithValue("@code", txtcusCode.Text);
-                    cmd.Parameters.AddWithValue("@cus_name", txtcusName.Text);
-                    cmd.Parameters.AddWithValue("@Amount", txtamount.Text);                    
-                    cmd.Parameters.AddWithValue("@Discount", txtDiscount.Text);
-                    cmd.Parameters.AddWithValue("@Comments", txtcomments.Text);
-                    cmd.Parameters.AddWithValue("@InvoiceNo", txtInvoice.Text);
-                    cmd.Parameters.AddWithValue("@InvoiceAmount", txtInvoiceamount.Text);
-                    cmd.Parameters.AddWithValue("@InvoiceDate", txtInvoiceDate.Text);
+                    using (SqlCommand cmdMain = new SqlCommand(insertMainQuery, connection))
+                    {
+                        cmdMain.Parameters.AddWithValue("@CompanyID", company.Text);
+                        cmdMain.Parameters.AddWithValue("@IPS_Date", date.Text);
+                        cmdMain.Parameters.AddWithValue("@Branch", Branch.Text);
+                        cmdMain.Parameters.AddWithValue("@TxnType", TxnType.Text);
+                        cmdMain.Parameters.AddWithValue("@Number", Number.Text);
+                        cmdMain.Parameters.AddWithValue("@User", user.Text);
+                        cmdMain.Parameters.AddWithValue("@cus_nu", txtCustomer.Text);
+                        cmdMain.Parameters.AddWithValue("@code", txtcusCode.Text);
+                        cmdMain.Parameters.AddWithValue("@cus_name", txtcusName.Text);
+                        cmdMain.Parameters.AddWithValue("@Amount", txtamount.Text);
+                        cmdMain.Parameters.AddWithValue("@Discount", txtDiscount.Text);
+                        cmdMain.Parameters.AddWithValue("@Comments", txtcomments.Text);
+                        cmdMain.Parameters.AddWithValue("@InvoiceNo", txtInvoice.Text);
+                        cmdMain.Parameters.AddWithValue("@InvoiceAmount", txtInvoiceamount.Text);
+                        cmdMain.Parameters.AddWithValue("@InvoiceDate", txtInvoiceDate.Text);
 
 
-                     con.Open();
-                     cmd.ExecuteNonQuery();
-                     Response.Write("Saved Successfully");
+                        cmdMain.ExecuteNonQuery();
+                    }
 
-                     divMsg.Visible = true;
-                     lblShowMessage.Visible = true;
-                     lblShowMessage.Text = "Successfully inserted!";
+                    // Insert into purchase_order_footer
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        string insertDetailQuery = "INSERT INTO sales_return_footer (ItemCode, Description, Price, PSize, Packs, Nos, Discount, Amount, GrandTotal) " +
+                                     "VALUES (@ItemCode, @Description, @Price, @PSize, @Packs, @Nos, @Discount, @Amount, @GrandTotal)";
 
+                        using (SqlCommand command = new SqlCommand(insertDetailQuery, connection))
+                        {
+                            command.Parameters.AddWithValue("@ItemCode", row["item_code"]);
+                            command.Parameters.AddWithValue("@Description", row["Description"]);
+                            command.Parameters.AddWithValue("@Price", Convert.ToDecimal(row["price"]));
+                            command.Parameters.AddWithValue("@PSize", Convert.ToInt32(row["psize"]));
+                            command.Parameters.AddWithValue("@Packs", Convert.ToInt32(row["packs"]));
+                            command.Parameters.AddWithValue("@Nos", Convert.ToInt32(row["nos"]));
+                            command.Parameters.AddWithValue("@Discount", Convert.ToDecimal(row["discount"]));
+                            command.Parameters.AddWithValue("@Amount", Convert.ToDecimal(row["Amount"]));
+                            command.Parameters.AddWithValue("@GrandTotal", grandTotal);
+
+                            command.ExecuteNonQuery();
+                        }
+                    }
                 }
 
-            }
+                dt.Clear();
+                GridView4.DataSource = null;
+                GridView4.DataBind();
+                Session["data"] = dt;
 
+                divMsg.Visible = true;
+                lblShowMessage.Visible = true;
+                lblShowMessage.Text = "Successfully inserted!";
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
+
+    
+
 
         protected void Button2_Click(object sender, EventArgs e)
         {
