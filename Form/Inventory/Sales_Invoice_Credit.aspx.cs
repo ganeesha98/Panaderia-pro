@@ -238,7 +238,7 @@ namespace Panaderia.Form.Inventory
                     // Insert into purchase_order_footer
                     foreach (DataRow row in dt.Rows)
                     {
-                        string insertDetailQuery = "INSERT INTO purchase_order_footer (ItemCode, Description, Price, PSize, Packs, Nos, Discount, Amount, GrandTotal) " +
+                        string insertDetailQuery = "INSERT INTO sales_invoice_footer (ItemCode, Description, Price, PSize, Packs, Nos, Discount, Amount, GrandTotal) " +
                                      "VALUES (@ItemCode, @Description, @Price, @PSize, @Packs, @Nos, @Discount, @Amount, @GrandTotal)";
 
                         using (SqlCommand command = new SqlCommand(insertDetailQuery, connection))
